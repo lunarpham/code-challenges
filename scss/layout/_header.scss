@@ -1,0 +1,97 @@
+@import "../base/variables", "../base/mixins";
+
+.header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: spacing("padding", "md");
+  color: white;
+  background-color: color("background", "primary");
+
+  @include respond-to("desktop") {
+    padding: spacing("padding", "mmd") spacing("padding", "xl");
+  }
+
+  &__section {
+    width: 50%;
+
+    @include respond-to("desktop") {
+      width: 33%;
+    }
+
+    &--left {
+      display: flex;
+      justify-content: start;
+    }
+
+    &--center {
+      display: flex;
+      justify-content: center;
+    }
+
+    &--right {
+      display: flex;
+      justify-content: end;
+    }
+  }
+
+  &__logo {
+    font-size: 32px;
+    font-weight: 700;
+    text-align: start;
+  }
+
+  &__menu {
+    &-button-group {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: fit-content;
+      gap: spacing("gap", "md");
+    }
+
+    &-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      padding: 12px;
+      border: 1px solid color("border", "secondary");
+      background-color: color("button", "secondary");
+      border-radius: 8px;
+      cursor: pointer;
+      outline: none;
+      &__inner-content {
+        font-size: 16px;
+        font-weight: 500;
+        color: color("font", "primary");
+        padding: 0;
+        border: none;
+        @include respond-to("desktop") {
+          font-size: 16px;
+          padding: 0 16px;
+        }
+      }
+    }
+
+    &-item {
+      font-size: 16px;
+      padding: spacing("padding", "sm") spacing("padding", "xs");
+    }
+
+    &--mobile {
+      display: flex;
+      padding: 0;
+      @include respond-to("desktop") {
+        display: none;
+      }
+    }
+
+    &--desktop {
+      display: none;
+      @include respond-to("desktop") {
+        display: flex;
+      }
+    }
+  }
+}

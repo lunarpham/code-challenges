@@ -1,0 +1,219 @@
+@import "variables";
+
+@mixin respond-to($breakpoint) {
+  $size: map-get($breakpoints, $breakpoint);
+
+  @media screen and (min-width: $size) {
+    @content;
+  }
+}
+
+@mixin breakdown-to($breakpoint) {
+  $size: map-get($breakpoints, $breakpoint);
+
+  @media screen and (max-width: $size) {
+    @content;
+  }
+}
+
+@mixin button(
+  $color-style,
+  $width,
+  $max-width,
+  $font-size,
+  $padding-y: "sm",
+  $padding-x: "slg"
+) {
+  padding: spacing("padding", $padding-y) spacing("padding", $padding-x);
+  font-size: font-size($font-size);
+  border-radius: spacing("radius", "sm");
+  color: color("font", "primary");
+  letter-spacing: 0.5px;
+  line-height: line-height($font-size);
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  width: $width;
+  max-width: $max-width;
+  border: 1px solid color("border", $color-style);
+  background-color: color("button", $color-style);
+}
+
+@mixin responsive-padding(
+  $mobile-padding-y,
+  $mobile-padding-x,
+  $desktop-padding-y,
+  $desktop-padding-x
+) {
+  padding: spacing("padding", $mobile-padding-y)
+    spacing("padding", $mobile-padding-x);
+
+  @include respond-to("desktop") {
+    padding: spacing("padding", $desktop-padding-y)
+      spacing("padding", $desktop-padding-x);
+  }
+}
+
+@mixin responsive-gap($mobile-gap, $desktop-gap) {
+  gap: spacing("gap", $mobile-gap);
+
+  @include respond-to("desktop") {
+    gap: spacing("gap", $desktop-gap);
+  }
+}
+
+@mixin container($bg-style, $flex-direction) {
+  display: flex;
+  flex-direction: $flex-direction;
+  width: 100%;
+  background-color: color("background", $bg-style);
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin container-responsive($bg-style) {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: color("background", $bg-style);
+  justify-content: center;
+  align-items: center;
+
+  @include respond-to("desktop") {
+    flex-direction: row;
+  }
+}
+
+@mixin container-gradient($bg-style, $bg-style2) {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    color("background", $bg-style) 50%,
+    color("background", $bg-style2) 50%
+  );
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin double-line($gapsize) {
+  display: flex;
+  flex-direction: column;
+  gap: spacing("gap", $gapsize);
+}
+
+@mixin text-with-icon($gapsize) {
+  display: flex;
+  flex-direction: row;
+  gap: spacing("gap", $gapsize);
+  justify-content: start;
+  align-items: start;
+  text-align: start;
+}
+
+@mixin typography($color-style, $font-size, $weight: 500, $align: center) {
+  color: color("font", $color-style);
+  font-weight: $weight;
+  text-align: $align;
+  font-size: font-size($font-size);
+  line-height: line-height($font-size);
+}
+
+@mixin responsive-gallery(
+  $gapsize,
+  $row-1-max-width,
+  $row-2-max-width,
+  $row-1-alignments-mobile,
+  $row-1-alignments-desktop,
+  $row-2-alignments-mobile,
+  $row-2-alignments-desktop,
+  $img1-width-mobile,
+  $img1-width-desktop,
+  $img2-width-mobile,
+  $img2-width-desktop,
+  $img3-width-mobile,
+  $img3-width-desktop,
+  $img4-width-mobile,
+  $img4-width-desktop
+) {
+  width: 100%;
+  display: flex;
+  flex: 100%;
+  flex-direction: column;
+  gap: spacing("gap", $gapsize);
+  box-sizing: border-box;
+
+  @include respond-to("desktop") {
+    flex: 50%;
+  }
+
+  &--row-1 {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: $row-1-alignments-mobile;
+    gap: spacing("gap", $gapsize);
+
+    @include respond-to("desktop") {
+      justify-content: $row-1-alignments-desktop;
+    }
+
+    & img {
+      height: auto;
+      width: auto;
+      aspect-ratio: auto;
+      max-width: $row-1-max-width;
+      box-sizing: border-box;
+    }
+
+    & img:nth-child(1) {
+      width: $img1-width-mobile;
+      @include respond-to("desktop") {
+        width: $img1-width-desktop;
+      }
+    }
+
+    & img:nth-child(2) {
+      width: $img2-width-mobile;
+      @include respond-to("desktop") {
+        width: $img2-width-desktop;
+      }
+    }
+  }
+
+  &--row-2 {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: $row-2-alignments-mobile;
+    gap: spacing("gap", $gapsize);
+
+    @include respond-to("desktop") {
+      justify-content: $row-2-alignments-desktop;
+    }
+
+    & img {
+      height: auto;
+      width: auto;
+      max-width: $row-2-max-width;
+      box-sizing: border-box;
+    }
+
+    & img:nth-child(1) {
+      width: $img3-width-mobile;
+      @include respond-to("desktop") {
+        width: $img3-width-desktop;
+      }
+    }
+
+    & img:nth-child(2) {
+      width: $img4-width-mobile;
+      @include respond-to("desktop") {
+        width: $img4-width-desktop;
+      }
+    }
+  }
+}

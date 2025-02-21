@@ -1,0 +1,92 @@
+@import "../base/variables", "../base/mixins";
+
+@mixin comment-card($bg-style, $border-style, $font-style) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  border-radius: spacing("radius", "lg");
+  background-color: color("background", $bg-style);
+  border: 1px solid color("border", $border-style);
+  color: color("font", $font-style);
+  padding: spacing("padding", "md");
+  gap: spacing("gap", "sm");
+  @include typography("primary", "bodyM", 400, start);
+
+  @include respond-to("desktop") {
+    font-size: font-size("buttonL");
+    padding: spacing("padding", "slg");
+    gap: spacing("gap", "sm");
+    @include typography("primary", "bodyXXL", 400, start);
+  }
+}
+
+.avatar-group {
+  display: flex;
+  gap: spacing("gap", "sm");
+  align-items: center;
+  height: fit-content;
+  padding-bottom: 0;
+  width: 100%;
+  padding-top: spacing("padding", "md");
+
+  &__avatar {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    border-radius: spacing("radius", "full");
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: spacing("gap", "none");
+    justify-content: end;
+    align-items: start;
+    &--primary {
+      @include typography("primary", "bodyL", 400, start);
+    }
+
+    &--secondary {
+      @include typography("subtitle", "bodyM", 400, start);
+    }
+  }
+}
+
+@mixin icon-text($color-style, $text-size, $text-weight, $gap-size) {
+  display: flex;
+  flex-direction: row;
+  gap: spacing("gap", $gap-size);
+  align-items: center;
+  &__text {
+    @include typography($color-style, $text-size, $text-weight, center);
+  }
+}
+
+@mixin text-position($position) {
+  @if $position == "left" {
+    order: 0;
+  } @else if $position == "right" {
+    order: 1;
+  }
+}
+
+@mixin chip-badge {
+  display: flex;
+  flex: row;
+  justify-content: center;
+  text-align: center;
+  padding: 4px;
+  align-items: center;
+  border-radius: spacing("radius", "xs");
+  background-color: color("background", "chip");
+  & span {
+    color: color("font", "chip");
+    padding: spacing("padding", "xs");
+    font-size: font-size("bodyXS");
+    line-height: line-height("bodyXS");
+    font-weight: 400;
+    padding: 0 4px;
+    margin: 0;
+  }
+}

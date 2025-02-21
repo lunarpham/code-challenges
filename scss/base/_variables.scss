@@ -1,0 +1,171 @@
+$colors: (
+  "font": (
+    "primary": #ffffff,
+    "secondary": #cbd5e1,
+    "highlight": #818cf8,
+    "subtitle": #94a3b8,
+    "chip": #3730a3,
+  ),
+  "background": (
+    "primary": #0f172a,
+    "secondary": #1e293b,
+    "highlight": #4f46e5,
+    "lighter": #334155,
+    "chip": #e0e7ff,
+  ),
+  "button": (
+    "primary": #4f46e5,
+    "secondary": #334155,
+  ),
+  "border": (
+    "primary": #6366f1,
+    "secondary": #475569,
+  ),
+) !default;
+
+$font-weights: (
+  "light": 300,
+  "regular": 400,
+  "medium": 500,
+  "bold": 700,
+  "extra-bold": 800,
+);
+
+$font-sizes: (
+  "heading-1": (
+    "font-size": 72px,
+    "line-height": 79.2px,
+  ),
+  "heading-2": (
+    "font-size": 56px,
+    "line-height": 61.6px,
+  ),
+  "heading-3": (
+    "font-size": 48px,
+    "line-height": 52.8px,
+  ),
+  "heading-4": (
+    "font-size": 42px,
+    "line-height": 46.2px,
+  ),
+  "heading-5": (
+    "font-size": 32px,
+    "line-height": 35.2px,
+  ),
+  "heading-6": (
+    "font-size": 24px,
+    "line-height": 26.4px,
+  ),
+  "subheading": (
+    "font-size": 20px,
+    "line-height": 22px,
+  ),
+  "bodyXXL": (
+    "font-size": 24px,
+    "line-height": 38.4px,
+  ),
+  "bodyL": (
+    "font-size": 18px,
+    "line-height": 28.8px,
+  ),
+  "bodyM": (
+    "font-size": 16px,
+    "line-height": 22.4px,
+  ),
+  "bodyS": (
+    "font-size": 14px,
+    "line-height": 19.6px,
+  ),
+  "bodyXS": (
+    "font-size": 12px,
+    "line-height": 16.8px,
+  ),
+  "buttonL": (
+    "font-size": 20px,
+    "line-height": 24px,
+  ),
+  "buttonM": (
+    "font-size": 16px,
+    "line-height": 24px,
+  ),
+  "subtitleL": (
+    "font-size": 18px,
+    "line-height": 19.8px,
+  ),
+  "subtitleM": (
+    "font-size": 16px,
+    "line-height": 19.8px,
+  ),
+);
+
+$spacing: (
+  "gap": (
+    "none": 0,
+    "xs": 8px,
+    "sm": 16px,
+    "md": 24px,
+    "lg": 32px,
+    "xl": 48px,
+    "2xl": 80px,
+  ),
+  "padding": (
+    "none": 0,
+    "xs": 8px,
+    "sm": 12px,
+    "md": 16px,
+    "mmd": 24px,
+    "slg": 32px,
+    "lg": 48px,
+    "sxl": 64px,
+    "xl": 80px,
+  ),
+  "radius": (
+    "none": 0,
+    "xs": 4px,
+    "sm": 8px,
+    "md": 10px,
+    "lg": 20px,
+    "full": 99999px,
+  ),
+);
+
+$text-align: (
+  "left": left,
+  "center": center,
+  "right": right,
+);
+
+$breakpoints: (
+  "mobile": 393px,
+  "desktop": 1320px,
+);
+
+$base-font: "Roboto";
+$font-url: "assets/fonts/Roboto.ttf";
+
+@function color($category, $shade) {
+  @return map-get(map-get($colors, $category), $shade);
+}
+
+@function font-size($size-name) {
+  @if map-has-key($font-sizes, $size-name) {
+    @return map-get(map-get($font-sizes, $size-name), "font-size");
+  } @else {
+    @error "Unknown font-size: #{$size-name}.";
+  }
+}
+
+@function line-height($size-name) {
+  @if map-has-key($font-sizes, $size-name) {
+    @return map-get(map-get($font-sizes, $size-name), "line-height");
+  }
+  @error "Unknown font size `#{$size-name}` in $font-sizes map";
+}
+
+@function spacing($type, $value) {
+  @return map-get(map-get($spacing, $type), $value);
+}
+
+@function font-weight($weight) {
+  @return map-get($font-weights, $weight);
+}

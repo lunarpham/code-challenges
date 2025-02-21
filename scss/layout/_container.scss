@@ -1,0 +1,773 @@
+@import "../base/variables", "../base/mixins", "./grid";
+
+.hero-section {
+  @include container("primary", column);
+  @include responsive-padding("lg", "md", "xl", "xl");
+  @include responsive-gap("xl", "2xl");
+
+  &__text-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @include responsive-gap("lg", "lg");
+  }
+
+  &__title-text {
+    @include double-line("xs");
+    &--primary {
+      @include typography("primary", "heading-3", 800, center);
+      @include respond-to("desktop") {
+        @include typography("primary", "heading-1", 800, center);
+      }
+    }
+    &--highlight {
+      @include typography("highlight", "subheading", 500, center);
+      @include respond-to("desktop") {
+        @include typography("highlight", "subheading", 500, center);
+      }
+    }
+  }
+  &__paragraph-text {
+    @include typography("secondary", "subtitleM", 400, center);
+    @include respond-to("desktop") {
+      @include typography("secondary", "subtitleL", 400, center);
+    }
+  }
+
+  &__action-button {
+    &--primary {
+      @include button("primary", 100%, 256px, "buttonM", "sm", "none");
+      @include respond-to("desktop") {
+        @include button("primary", 100%, 256px, "buttonL", "md", "md");
+      }
+    }
+
+    &--secondary {
+      @include button("secondary", 100%, 256px, "buttonM", "sm", "none");
+      @include respond-to("desktop") {
+        width: 100%;
+        @include button("secondary", 100%, 256px, "buttonL", "md");
+      }
+    }
+  }
+
+  &__button-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: spacing("gap", "sm");
+  }
+
+  &__image {
+    &--repsonsive {
+      width: 240px;
+      height: auto;
+
+      @include respond-to("desktop") {
+        width: 284px;
+      }
+    }
+  }
+}
+
+// 2nd section
+.trust-companies {
+  @include container("primary", column);
+  @include responsive-padding("lg", "md", "xl", "xl");
+  @include responsive-gap("lg", "2xl");
+  text-align: center;
+  &__inner-text {
+    @include typography("primary", "subtitleL", 700, center);
+    @include respond-to("desktop") {
+      @include typography("primary", "heading-6", 700, center);
+    }
+  }
+
+  &__company-logos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    @include responsive-gap("md", "2xl");
+  }
+}
+
+.slogan {
+  @include container("primary", column);
+  @include responsive-padding("lg", "md", "xl", "xl");
+  @include responsive-gap("lg", "2xl");
+
+  &__inner-box {
+    display: flex;
+    flex-direction: column;
+    @include responsive-gap("lg", "lg");
+  }
+
+  &__main-title {
+    @include double-line("xs");
+    @each $color-style, $color in map-get($colors, "font") {
+      &--#{$color-style} {
+        @include typography($color-style, "heading-6", 800, center);
+        @include respond-to("desktop") {
+          @include typography($color-style, "heading-2", 800, center);
+        }
+      }
+    }
+  }
+  &__paragraph-text {
+    @include typography("secondary", "bodyM", 400, center);
+    @include respond-to("desktop") {
+      @include typography("secondary", "bodyL", 400, center);
+    }
+  }
+}
+
+.gallery-section {
+  @include container-responsive("primary");
+  @include responsive-padding("lg", "md", "xl", "xl");
+  @include responsive-gap("lg", "2xl");
+
+  &__text-box {
+    flex: 100%;
+    width: 100%;
+    @include responsive-gap("lg", "md");
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @include respond-to("desktop") {
+      flex: 50%;
+      align-items: start;
+    }
+  }
+
+  &__title-text {
+    @include double-line("xs");
+    @each $color-style, $color in map-get($colors, "font") {
+      &--#{$color-style} {
+        @include typography($color-style, "heading-6", 700, center);
+
+        @include respond-to("desktop") {
+          @include typography($color-style, "heading-3", 800, start);
+        }
+      }
+    }
+  }
+
+  &__paragraph-text {
+    &--mobile {
+      @include typography("secondary", "bodyM", 400, center);
+      display: inline-block;
+      @include respond-to("desktop") {
+        display: none;
+      }
+    }
+
+    &--desktop {
+      display: none;
+      @include respond-to("desktop") {
+        display: inline-block;
+        @include typography("secondary", "bodyL", 400, start);
+      }
+    }
+  }
+
+  &__gallery {
+    @include responsive-gallery(
+      "sm",
+      100%,
+      100%,
+      center,
+      end,
+      center,
+      end,
+      calc(50% - 8px),
+      auto,
+      calc(50% - 8px),
+      auto,
+      34%,
+      auto,
+      calc(52% - 5px),
+      auto
+    );
+    &--row-2 {
+      @include respond-to("desktop") {
+        padding-right: 24px;
+      }
+    }
+  }
+}
+
+.gallery-item {
+  height: 112px;
+  width: auto;
+
+  @include respond-to("desktop") {
+    height: auto;
+    width: auto;
+  }
+}
+
+.desktop-intro {
+  @include container-gradient("highlight", "primary");
+  @include responsive-padding("lg", "md", "xl", "xl");
+  @include responsive-gap("lg", "2xl");
+
+  &__main-title {
+    @include typography("primary", "heading-6", 700, center);
+
+    @include respond-to("desktop") {
+      @include typography("primary", "heading-3", 800, center);
+    }
+  }
+
+  &__application-image {
+    & img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.features-1 {
+  @include container-responsive("primary");
+  @include responsive-padding("lg", "md", "xl", "xl");
+  @include responsive-gap("lg", "2xl");
+
+  &__gallery {
+    flex: 100%;
+    order: 2;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    overflow: hidden;
+    @include responsive-gallery(
+      "sm",
+      100%,
+      100%,
+      start,
+      start,
+      start,
+      start,
+      82.27%,
+      auto,
+      0,
+      0,
+      calc(50% - 8px),
+      auto,
+      calc(50% - 8px),
+      auto
+    );
+    @include respond-to("desktop") {
+      flex: 50%;
+    }
+  }
+
+  &__list-side {
+    flex: 100%;
+    order: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+
+    @include respond-to("desktop") {
+      flex: 50%;
+      order: 2;
+    }
+  }
+
+  &__above-part {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    @include responsive-gap("lg", "lg");
+  }
+
+  &__below-part {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    @include responsive-gap("lg", "md");
+  }
+
+  &__text-box {
+    display: flex;
+    flex-direction: column;
+    @include responsive-gap("lg", "md");
+  }
+
+  &__main-title {
+    @include double-line("xs");
+    @each $color-style, $color in map-get($colors, "font") {
+      &--#{$color-style} {
+        @include typography($color-style, "heading-6", 700, start);
+
+        @include respond-to("desktop") {
+          @include typography($color-style, "heading-3", 800, start);
+        }
+      }
+    }
+  }
+
+  &__paragraph-text {
+    @include typography("secondary", "bodyM", 400, start);
+    @include respond-to("desktop") {
+      @include typography("secondary", "bodyL", 400, start);
+    }
+  }
+
+  &__feature-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    @include responsive-gap("none", "none");
+  }
+
+  &__list-item {
+    @include text-with-icon("xs");
+    @include typography("primary", "bodyM", 400, start);
+    @include respond-to("desktop") {
+      @include typography("primary", "bodyL", 400, start);
+    }
+  }
+
+  &__action-button {
+    @include button("primary", fit-content, fit-content, "buttonL", "md");
+  }
+}
+
+.features-2 {
+  @include container-responsive("primary");
+  @include responsive-padding("lg", "md", "xl", "xl");
+  @include responsive-gap("lg", "2xl");
+
+  &__gallery {
+    flex: 100%;
+    width: 100%;
+
+    @include respond-to("desktop") {
+      flex: 50%;
+      width: 100%;
+    }
+
+    & img {
+      width: 100%;
+      height: auto;
+
+      @include respond-to("desktop") {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  &__list-side {
+    flex: 100%;
+    order: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+
+    @include respond-to("desktop") {
+      flex: 50%;
+      order: 2;
+    }
+  }
+
+  &__above-part {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    @include responsive-gap("lg", "lg");
+  }
+
+  &__below-part {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    @include responsive-gap("lg", "md");
+  }
+
+  &__text-box {
+    width: 100%;
+    display: flex;
+    flex: 100%;
+    flex-direction: column;
+    @include responsive-gap("lg", "md");
+    @include respond-to("desktop") {
+      flex: 50%;
+    }
+  }
+
+  &__main-title {
+    @include double-line("xs");
+    @each $color-style, $color in map-get($colors, "font") {
+      &--#{$color-style} {
+        @include typography($color-style, "heading-6", 700, start);
+
+        @include respond-to("desktop") {
+          @include typography($color-style, "heading-3", 800, start);
+        }
+      }
+    }
+  }
+
+  &__paragraph-text {
+    @include typography("secondary", "bodyM", 400, start);
+    @include respond-to("desktop") {
+      @include typography("secondary", "bodyL", 400, start);
+    }
+  }
+
+  &__feature-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    @include responsive-gap("none", "none");
+  }
+
+  &__list-item {
+    @include text-with-icon("xs");
+    @include typography("primary", "bodyM", 400, start);
+    @include respond-to("desktop") {
+      @include typography("primary", "bodyL", 400, start);
+    }
+  }
+
+  &__action-button {
+    @include button("primary", fit-content, fit-content, "buttonL", "md");
+  }
+}
+
+.chart-showing {
+  @include container("primary", column);
+  @include responsive-padding("lg", "md", "xl", "xl");
+  @include responsive-gap("lg", "2xl");
+
+  &__inner-content {
+    display: flex;
+    flex-direction: column;
+    @include responsive-gap("lg", "none");
+    width: 100%;
+    border-radius: spacing("radius", "lg");
+    @each $border-style, $border in map-get($colors, "border") {
+      &--#{$border-style} {
+        border: 1px solid $border;
+      }
+    }
+
+    @include respond-to("desktop") {
+      flex-direction: row;
+      padding: spacing("padding", "sxl") spacing("padding", "none");
+    }
+  }
+
+  &__text-box {
+    display: flex;
+    flex: 100%;
+    flex-direction: column;
+    @include responsive-gap("lg", "lg");
+    justify-content: center;
+    align-items: start;
+    margin: spacing("padding", "mmd") spacing("padding", "md")
+      spacing("padding", "none") spacing("padding", "md");
+    @include respond-to("desktop") {
+      margin-left: spacing("padding", "sxl");
+      flex: 50%;
+    }
+  }
+
+  &__main-title {
+    @include typography("primary", "subtitleL", 500, start);
+    @include respond-to("desktop") {
+      @include typography("primary", "heading-5", 700, start);
+    }
+  }
+
+  &__paragraph-text {
+    @include typography("secondary", "bodyM", 400, start);
+    @include respond-to("desktop") {
+      @include typography("secondary", "bodyL", 400, start);
+    }
+  }
+
+  &__action-button {
+    @include button("secondary", fit-content, fit-content, "buttonL", "md");
+  }
+
+  &__chart-image {
+    width: 100%;
+    flex: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include respond-to("desktop") {
+      flex: 50%;
+    }
+    & img {
+      object-fit: cover;
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.secondary-intro {
+  @include container-responsive("secondary");
+  @include responsive-gap("lg", "2xl");
+  padding: spacing("padding", "lg") spacing("padding", "none")
+    spacing("padding", "none") spacing("padding", "md");
+
+  @include respond-to("desktop") {
+    padding: spacing("padding", "xl") spacing("padding", "none")
+      spacing("padding", "none") spacing("padding", "xl");
+  }
+
+  &__text-box {
+    flex: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    padding-right: spacing("padding", "md");
+    @include responsive-gap("lg", "md");
+    @include respond-to("desktop") {
+      flex: 50%;
+      padding-right: spacing("padding", "none");
+    }
+  }
+
+  &__main-title {
+    @include double-line("xs");
+    @each $color-style, $color in map-get($colors, "font") {
+      &--#{$color-style} {
+        @include typography($color-style, "heading-6", 700, start);
+
+        @include respond-to("desktop") {
+          @include typography($color-style, "heading-3", 800, start);
+        }
+      }
+    }
+  }
+
+  &__paragraph-text {
+    @include typography("secondary", "bodyM", 400, start);
+    @include respond-to("desktop") {
+      @include typography("secondary", "bodyL", 400, start);
+    }
+  }
+
+  &__action-button {
+    @include button("primary", fit-content, fit-content, "buttonL", "md");
+  }
+
+  &__image-box {
+    width: 100%;
+    flex: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    @include responsive-gap("lg", "md");
+    @include respond-to("desktop") {
+      flex: 50%;
+    }
+
+    & img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.feedback {
+  @include container("primary", column);
+  @include responsive-padding("lg", "md", "xl", "xl");
+  @include responsive-gap("lg", "2xl");
+
+  &__text-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @include responsive-gap("lg", "md");
+  }
+
+  &__title-text {
+    @include double-line("xs");
+    @each $color-style, $color in map-get($colors, "font") {
+      &--#{$color-style} {
+        @include typography($color-style, "heading-6", 700, center);
+
+        @include respond-to("desktop") {
+          @include typography($color-style, "heading-2", 800, center);
+        }
+      }
+    }
+  }
+
+  &__body-text {
+    @include typography("secondary", "bodyM", 400, center);
+    @include respond-to("desktop") {
+      @include typography("secondary", "bodyL", 400, center);
+    }
+  }
+
+  &__list {
+    padding: 0 22.5px;
+    @include respond-to("desktop") {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: stretch;
+      gap: spacing("gap", "md");
+      padding: 0 40px;
+    }
+  }
+
+  &__card-wrapper {
+    @include respond-to("desktop") {
+      flex: 1;
+      display: flex;
+    }
+    &:first-child {
+      padding: 19px 0;
+      display: none;
+      @include respond-to("desktop") {
+        display: flex;
+      }
+    }
+
+    &:last-child {
+      padding: 19px 0;
+      display: none;
+      @include respond-to("desktop") {
+        display: flex;
+      }
+    }
+
+    &--desktop-only {
+      display: none;
+      @include respond-to("desktop") {
+        display: flex;
+      }
+    }
+  }
+
+  &__comment-card {
+    @include comment-card("lighter", "secondary", "secondary");
+    height: 100%;
+  }
+
+  &__logo-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    padding: spacing("padding", "md") spacing("padding", "none");
+  }
+
+  .navigator-box {
+    display: none;
+
+    @include respond-to("desktop") {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: spacing("gap", "md");
+    }
+
+    .button {
+      cursor: pointer;
+      padding: 12px 8px;
+      @include icon-text("primary", "buttonM", 500, "none");
+      &__text {
+        &--left {
+          @include text-position("left");
+        }
+        &--right {
+          @include text-position("right");
+        }
+      }
+    }
+  }
+}
+
+.last-section {
+  @include container("primary", column);
+  @include responsive-padding("lg", "md", "xl", "xl");
+  @include responsive-gap("lg", "2xl");
+
+  .inner-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    @include responsive-gap("lg", "lg");
+
+    @include respond-to("desktop") {
+      padding-bottom: spacing("padding", "xl");
+    }
+    &__main-title {
+      @include double-line("xs");
+      @each $color-style, $color in map-get($colors, "font") {
+        &--#{$color-style} {
+          @include typography($color-style, "heading-6", 800, center);
+          @include respond-to("desktop") {
+            @include typography($color-style, "heading-2", 800, center);
+          }
+        }
+      }
+    }
+
+    &__paragraph-text {
+      @include typography("secondary", "bodyM", 400, center);
+      @include respond-to("desktop") {
+        @include typography("secondary", "bodyL", 400, center);
+      }
+    }
+
+    .button-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      display: flex;
+      gap: spacing("gap", "sm");
+
+      &__action-button {
+        &--primary {
+          @include button("primary", 100%, 256px, "buttonM", "sm", "none");
+          @include respond-to("desktop") {
+            @include button("primary", 100%, 256px, "buttonL", "md", "none");
+          }
+        }
+
+        &--secondary {
+          @include button("secondary", 100%, 256px, "buttonM", "sm", "none");
+          @include respond-to("desktop") {
+            @include button("secondary", 100%, 256px, "buttonL", "md", "none");
+          }
+        }
+      }
+    }
+  }
+}
