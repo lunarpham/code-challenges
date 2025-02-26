@@ -1,0 +1,204 @@
+@import "variables", "utilities";
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 15px;
+  background-color: $bg-primary;
+
+  @include respond-to("phone") {
+    max-width: 300px;
+  }
+
+  &__title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    display: block;
+    font-weight: 700;
+  }
+
+  &__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__group {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: stretch;
+    align-items: start;
+    &--responsive {
+      @include respond-to("phone") {
+        flex-direction: column;
+      }
+    }
+  }
+
+  &__button {
+    font-weight: bold;
+    color: white;
+    background-color: $button;
+    padding: 15px 0;
+    border-radius: 5px;
+    border: 1px solid $border-dark;
+    margin-top: 8px;
+    cursor: pointer;
+    &:hover {
+      background-color: $button-hover;
+    }
+  }
+}
+
+input {
+  border: 1px solid $border;
+  border-radius: 5px;
+  &[type="text"],
+  &[type="email"] {
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+    margin: 8px 0;
+
+    &:focus {
+      outline: 1px solid $border;
+    }
+  }
+
+  &[type="checkbox"],
+  &[type="radio"] {
+    accent-color: $button;
+  }
+}
+
+textarea {
+  border: 1px solid $border;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  font-size: 16px;
+  margin: 8px 0;
+  resize: none;
+  height: 95.31px;
+
+  &:focus {
+    outline: 1px solid $border;
+  }
+}
+
+.form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &--responsive {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: stretch;
+    align-items: start;
+    margin: 8px 0;
+
+    @include respond-to("phone") {
+      flex-direction: column;
+    }
+  }
+
+  &__query-option {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border: 1px solid $border;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    gap: 10px;
+
+    @include respond-to("phone") {
+      margin: 0;
+    }
+
+    &:hover {
+      border-color: $border-hightlight;
+    }
+
+    &:has(input:checked) {
+      background-color: $bg-secondary;
+      border-color: $border-hightlight;
+    }
+  }
+
+  &__radio-label {
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+  }
+
+  &__error {
+    color: $text-warning;
+    font-size: 14px;
+  }
+
+  &__label {
+    font-size: 14px;
+    margin: 0;
+    &--required {
+      color: $text-secondary;
+    }
+  }
+}
+
+.consent-accept {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  gap: 10px;
+  justify-content: start;
+  margin-bottom: 8px;
+}
+
+.toast {
+  position: fixed;
+  top: 30px;
+  background-color: hsl(187, 24%, 22%);
+  padding: 20px;
+  border-radius: 10px;
+  color: hsl(0, 0%, 100%);
+  font-size: 14px;
+  transition: all 1s linear;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  text-align: left;
+  gap: 10px;
+  z-index: 1000;
+
+  &--hidden {
+    transform: translateY(-400px);
+  }
+
+  @include respond-to("phone") {
+    width: 300px;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  &__icon {
+    width: 14px;
+  }
+}

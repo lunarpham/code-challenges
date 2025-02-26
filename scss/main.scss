@@ -1,0 +1,25 @@
+@import "layout", "reset", "utilities", "variables";
+
+@font-face {
+  font-family: "Karla";
+  src: url($base-font-url) format("truetype");
+}
+
+body {
+  font-family: $base-font;
+  color: $text-primary;
+  background-color: $bg-secondary;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  overflow-x: hidden;
+  line-height: 1.25;
+
+  @include respond-to("phone") {
+    min-height: fit-content;
+  }
+}
