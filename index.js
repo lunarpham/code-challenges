@@ -1,3 +1,9 @@
+/*The concept of the code structure editing is split them down into smaller functions
+ - Constant variables in a class for more convenient when mentioning them
+ - Add all functions that contain event handling to a function wrapper, and let the wrapper run whenever DOM is loaded
+ - showToast function must be run when DOM is loaded, because we need to reload the page after submitting
+*/
+
 // Add event listener to button upon page load
 window.addEventListener("DOMContentLoaded", (event) => {
   console.log("Page loaded!");
@@ -76,6 +82,7 @@ class FormValidation {
   // Setup field validation
   setupInputValidation() {
     for (const key in this.form) {
+      // 4 object inside "form" array
       const input = this.form[key];
       const errorElement = this.getErrorElement(input.id);
 
@@ -110,6 +117,7 @@ class FormValidation {
   // Setup submit handler
 
   setupSubmitHandler() {
+    // Add event listener to submit button
     this.submit.addEventListener("click", (e) => {
       e.preventDefault();
       if (this.validateForm()) {
@@ -123,6 +131,8 @@ class FormValidation {
   getErrorElement(inputId) {
     return this.errorDialogs.find(
       (error) => error.getAttribute("data-for") === inputId
+      // The value of data-for must be the same as id name
+      // In order to map an array, a key is needed (it can be any as it represents an inner object)
     );
   }
 
@@ -143,6 +153,8 @@ class FormValidation {
     }
   }
 
+  // Check email format
+  
   isValidEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
