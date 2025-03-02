@@ -113,6 +113,7 @@ class MultistepForm {
     this.formStep3.addEventListener("submit", (event) => {
       event.preventDefault();
       alert("✅ Success");
+      this.clearLocalStorage();
       window.location.reload();
       this.updateUI();
     });
@@ -250,6 +251,14 @@ class MultistepForm {
       return data ? JSON.parse(data) : null;
     } catch (error) {
       console.error("Error getting from local storage:", error);
+    }
+  }
+
+  clearLocalStorage() {
+    try {
+      localStorage.clear();
+    } catch (error) {
+      console.error("Error clearing local storage:", error);
     }
   }
 
