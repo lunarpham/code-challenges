@@ -33,8 +33,9 @@ input [type=checkbox] {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: center;
+  align-items: center;
+  justify-content: start;
+  gap: 0;
 }
 .form-wrapper--hidden {
   display: none;
@@ -60,14 +61,16 @@ input [type=checkbox] {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   gap: 2.3rem;
 }
 .form-step1__input {
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 1.5rem;
 }
 .form-step1__heading {
@@ -79,10 +82,13 @@ input [type=checkbox] {
 }
 .form-step1__label {
   width: 100%;
+  width: 100%;
   display: flex;
-  margin-top: 0.1rem;
   flex-direction: column;
+  align-items: stretch;
+  justify-content: start;
   gap: 0.5rem;
+  margin-top: 0.1rem;
   font-size: 0.78rem;
   color: #a1a1a9;
 }
@@ -97,16 +103,17 @@ input [type=checkbox] {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 2.3rem;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  gap: 2.3rem;
 }
 .form-step2__select-group {
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+  justify-content: start;
   gap: 1rem;
-  width: 100%;
 }
 .form-step2__label {
   display: block;
@@ -136,12 +143,16 @@ input [type=checkbox] {
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+  justify-content: start;
   gap: 0.9rem;
 }
 .form-step3__s1-summary {
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+  justify-content: start;
   gap: 0.3rem;
 }
 .form-step3__s1-info {
@@ -154,6 +165,8 @@ input [type=checkbox] {
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+  justify-content: start;
   gap: 0.5rem;
 }
 .form-step3__s2-title {
@@ -163,35 +176,32 @@ input [type=checkbox] {
   color: #e5e7eb;
 }
 .form-step3__s2-item {
-  display: flex;
-  gap: 0.5rem;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
-  margin-left: 0.3rem;
-}
-.form-step3__label {
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
   gap: 0.5rem;
-  font-size: 0.78rem;
-  color: #a1a1a9;
+  margin-left: 0.3rem;
 }
 .form-step3__button-wrapper {
   width: 100%;
   display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
+  gap: 0;
   margin-top: 1.4rem;
 }
 
 .indicator {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
-  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   gap: 1.8rem;
+  margin-top: 1rem;
   transform: translateX(-40px);
 }
 .indicator__current-step {
@@ -201,9 +211,13 @@ input [type=checkbox] {
   font-size: 0.7rem;
 }
 .indicator__step-circles {
+  width: 100%;
   display: flex;
+  flex-direction: row;
   align-items: start;
+  justify-content: center;
   gap: 1rem;
+  width: auto;
 }
 .indicator__circle {
   width: 0.7rem;
