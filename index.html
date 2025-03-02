@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multistep Registration</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container" id="form">
+      <div id="form-1" class="form-step1 form-wrapper">
+        <h2 class="form-step1__heading">Register</h2>
+        <form class="form-step1__input-fields">
+          <fieldset class="form-step1__input">
+            <label for="full-name" class="form-step1__label"
+              >Name
+              <input type="text" id="full-name" placeholder="John Doe" required
+            /></label>
+            <label for="email" class="form-step1__label"
+              >Email
+              <input
+                type="email"
+                id="email"
+                placeholder="example@gmail.com"
+                required
+            /></label>
+          </fieldset>
+          <button
+            class="continue-button form-wrapper__button"
+            action-for="form-1"
+            id="continue-button1"
+          >
+            Continue
+          </button>
+        </form>
+      </div>
+
+      <div id="form-2" class="form-step2 form-wrapper form-wrapper--hidden">
+        <h2 class="form-step2__heading">Which topics you are interested in?</h2>
+        <form class="form-step2__form-section">
+          <fieldset class="form-step2__select-group">
+            <label for="topic-1" class="form-step2__label">
+              Software Development
+              <input
+                type="checkbox"
+                id="topic-1"
+                value="Software Development"
+                name="topic"
+                class="form-step2__select-option"
+              />
+            </label>
+            <label for="topic-2" class="form-step2__label">
+              User Experience
+              <input
+                type="checkbox"
+                id="topic-2"
+                value="User Experience"
+                name="topic"
+                class="form-step2__select-option"
+              />
+            </label>
+            <label for="topic-3" class="form-step2__label">
+              Graphic Design
+              <input
+                type="checkbox"
+                id="topic-3"
+                value="Graphic Design"
+                name="topic"
+                class="form-step2__select-option"
+              />
+            </label>
+          </fieldset>
+          <button
+            class="continue-button form-wrapper__button"
+            action-for="form-2"
+          >
+            Continue
+          </button>
+        </form>
+      </div>
+      <div id="form-3" class="form-step3 form-wrapper form-wrapper--hidden">
+        <h2 class="form-step3__heading">Summary</h2>
+        <form class="form-step3__submit-info">
+          <div class="form-step3__s1-summary" id="form1-summary"></div>
+          <div class="form-step3__s2-summary">
+            <p class="form-step3__s2-title">Topics:</p>
+            <ul class="form-step3__s2-list" id="form2-summary"></ul>
+          </div>
+          <div class="form-step3__button-wrapper">
+            <button
+              class="continue-button form-wrapper__button"
+              action-for="form-3"
+            >
+              Confirm
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="indicator">
+      <div class="indicator__current-step"></div>
+      <div class="indicator__step-circles">
+        <div
+          class="indicator__circle indicator__circle--active indicator__circle--current"
+        ></div>
+        <div class="indicator__circle"></div>
+        <div class="indicator__circle"></div>
+      </div>
+    </div>
+    <script src="scripts.js"></script>
+  </body>
+</html>

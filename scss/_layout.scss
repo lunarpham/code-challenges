@@ -1,0 +1,265 @@
+@use "variables";
+
+.container {
+  border: 0.01rem solid variables.$slate-gray;
+  background-color: variables.$dark;
+  color: variables.$pale-gray;
+  padding: 2.5rem;
+  box-sizing: border-box;
+  width: 85%;
+  max-width: 28.5rem;
+  margin: 0 auto;
+  border-radius: 1rem;
+}
+
+input {
+  &[type="text"],
+  &[type="email"] {
+    padding: 0.9rem;
+    font-size: 0.75rem;
+    background: transparent;
+    border-radius: 0.7rem;
+    outline: none;
+    border: 0.13rem solid variables.$slate-gray;
+    color: variables.$pale-gray;
+
+    &:focus {
+      border: 0.13rem solid variables.$purpley;
+    }
+  }
+  [type="checkbox"] {
+    background-color: initial;
+    cursor: default;
+    appearance: auto;
+    box-sizing: border-box;
+  }
+}
+
+.form-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+
+  &--hidden {
+    display: none;
+  }
+
+  &__button {
+    background: linear-gradient(
+      to bottom,
+      variables.$purpley,
+      variables.$blue-purple
+    );
+    color: variables.$pale-gray;
+    padding: 0.75rem 2.2rem;
+    border-radius: 2rem;
+    border: none;
+    font-weight: 700;
+    display: block;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    width: fit-content;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.form-step1 {
+  &__input-fields {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.3rem;
+  }
+  &__input {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  &__heading {
+    width: 100%;
+    margin-bottom: 2.4rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  &__label {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    color: variables.$cool-gray;
+  }
+}
+
+.form-step2 {
+  &__heading {
+    width: 100%;
+    margin-bottom: 2.4rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  &__form-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2.3rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__select-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  &__label {
+    display: block;
+    padding: 0.9rem 0.8rem;
+    background: variables.$lunar-gray;
+    border-radius: 0.7rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    color: variables.$cool-gray;
+    border: 0.01rem solid variables.$slate-gray;
+
+    &--checked {
+      background: variables.$purpley;
+      color: variables.$pale-gray;
+    }
+  }
+
+  &__select-option {
+    appearance: none;
+  }
+}
+
+.form-step3 {
+  &__heading {
+    width: 100%;
+    margin-bottom: 2.7rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  &__submit-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  &__s1-summary {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  &__s1-info {
+    color: variables.$cool-gray;
+    &--highlight {
+      color: variables.$pale-gray;
+    }
+  }
+
+  &__s2-summary {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__s2-title {
+    color: variables.$cool-gray;
+  }
+
+  &__s2-list {
+    color: variables.$pale-gray;
+  }
+
+  &__s2-item {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    margin-left: 0.3rem;
+  }
+
+  &__label {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    color: variables.$cool-gray;
+  }
+
+  &__button-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1.4rem;
+  }
+}
+
+.indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 1rem;
+  gap: 1.8rem;
+  transform: translateX(-40px);
+
+  &__current-step {
+    vertical-align: middle;
+    left: 0;
+    color: variables.$cool-gray;
+    font-size: 0.7rem;
+  }
+
+  &__step-circles {
+    display: flex;
+    align-items: start;
+    gap: 1rem;
+  }
+
+  &__circle {
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    background: variables.$slate-gray;
+    transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+
+    &--active {
+      background: variables.$blue-purple;
+    }
+
+    &--current {
+      box-shadow: 0 0 0 0.4rem variables.$twilight;
+    }
+  }
+}
+
+.marker-dot {
+  font-size: 2rem;
+  margin: 0 0.1rem 0.3rem 0.1rem;
+  line-height: 0;
+  font-weight: bold;
+  align-items: center;
+}

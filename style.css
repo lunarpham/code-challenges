@@ -1,0 +1,397 @@
+.container {
+  border: 0.01rem solid #4d5562;
+  background-color: #212936;
+  color: #e5e7eb;
+  padding: 2.5rem;
+  box-sizing: border-box;
+  width: 85%;
+  max-width: 28.5rem;
+  margin: 0 auto;
+  border-radius: 1rem;
+}
+
+input[type=text], input[type=email] {
+  padding: 0.9rem;
+  font-size: 0.75rem;
+  background: transparent;
+  border-radius: 0.7rem;
+  outline: none;
+  border: 0.13rem solid #4d5562;
+  color: #e5e7eb;
+}
+input[type=text]:focus, input[type=email]:focus {
+  border: 0.13rem solid #845eee;
+}
+input [type=checkbox] {
+  background-color: initial;
+  cursor: default;
+  appearance: auto;
+  box-sizing: border-box;
+}
+
+.form-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+.form-wrapper--hidden {
+  display: none;
+}
+.form-wrapper__button {
+  background: linear-gradient(to bottom, #845eee, #652cd1);
+  color: #e5e7eb;
+  padding: 0.75rem 2.2rem;
+  border-radius: 2rem;
+  border: none;
+  font-weight: 700;
+  display: block;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  width: fit-content;
+}
+.form-wrapper__button:hover {
+  transform: scale(1.05);
+}
+
+.form-step1__input-fields {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.3rem;
+}
+.form-step1__input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.form-step1__heading {
+  width: 100%;
+  margin-bottom: 2.4rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.form-step1__label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: #a1a1a9;
+}
+
+.form-step2__heading {
+  width: 100%;
+  margin-bottom: 2.4rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.form-step2__form-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.3rem;
+  justify-content: center;
+  align-items: center;
+}
+.form-step2__select-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+.form-step2__label {
+  display: block;
+  padding: 0.9rem 0.8rem;
+  background: #394050;
+  border-radius: 0.7rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: #a1a1a9;
+  border: 0.01rem solid #4d5562;
+}
+.form-step2__label--checked {
+  background: #845eee;
+  color: #e5e7eb;
+}
+.form-step2__select-option {
+  appearance: none;
+}
+
+.form-step3__heading {
+  width: 100%;
+  margin-bottom: 2.7rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.form-step3__submit-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.form-step3__s1-summary {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.form-step3__s1-info {
+  color: #a1a1a9;
+}
+.form-step3__s1-info--highlight {
+  color: #e5e7eb;
+}
+.form-step3__s2-summary {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.form-step3__s2-title {
+  color: #a1a1a9;
+}
+.form-step3__s2-list {
+  color: #e5e7eb;
+}
+.form-step3__s2-item {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  margin-left: 0.3rem;
+}
+.form-step3__label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: #a1a1a9;
+}
+.form-step3__button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 1.4rem;
+}
+
+.indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 1rem;
+  gap: 1.8rem;
+  transform: translateX(-40px);
+}
+.indicator__current-step {
+  vertical-align: middle;
+  left: 0;
+  color: #a1a1a9;
+  font-size: 0.7rem;
+}
+.indicator__step-circles {
+  display: flex;
+  align-items: start;
+  gap: 1rem;
+}
+.indicator__circle {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: #4d5562;
+  transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+}
+.indicator__circle--active {
+  background: #652cd1;
+}
+.indicator__circle--current {
+  box-shadow: 0 0 0 0.4rem #342d61;
+}
+
+.marker-dot {
+  font-size: 2rem;
+  margin: 0 0.1rem 0.3rem 0.1rem;
+  line-height: 0;
+  font-weight: bold;
+  align-items: center;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section {
+  display: block;
+}
+
+/* HTML5 hidden-attribute fix for newer browsers */
+*[hidden] {
+  display: none;
+}
+
+body {
+  line-height: 1;
+  overflow-x: hidden;
+}
+
+menu,
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+input {
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
+  line-height: 1.25;
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: circle at 10% 20%, #ffffff, #ffffff, circle at 90% 80%, #ffffff, #ffffff;
+  background-color: #121826;
+}
+
+/*# sourceMappingURL=style.css.map */

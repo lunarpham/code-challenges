@@ -1,0 +1,19 @@
+@use "layout";
+@use "reset";
+@use "utilities";
+@use "variables";
+
+body {
+  font-family: variables.$font-base;
+  line-height: 1.25;
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: (circle at 10% 20%, #ffffff, #ffffff),
+    (circle at 90% 80%, #ffffff, #ffffff);
+  background-color: variables.$almost-dark;
+}
