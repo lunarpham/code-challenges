@@ -82,16 +82,24 @@ class MultistepForm {
       event.preventDefault();
       if (!this.isValidEmail(this.email.value)) {
         alert("Please provide a valid email!");
+      } else if (
+        this.fullName.value.trim().length === 0 ||
+        this.email.value.trim().length === 0
+      ) {
+        alert("Please fill in all fields!");
       } else {
         const formData = {
-          fullName: this.fullName.value,
-          email: this.email.value,
+          fullName: this.fullName.value.trim(),
+          email: this.email.value.trim(),
         };
         this.saveToLocalStorage("formData", formData);
         this.moveToStep(2);
         this.updateUI();
       }
     });
+  }
+  cleanString(str) {
+    return str.replace(/[^a-zA-Z ]/g, "");
   }
 
   initFunctionsForStep2() {
@@ -162,6 +170,7 @@ class MultistepForm {
     let currentStep = 1; // Default to step 1
 
     this.formSteps.forEach((step, index) => {
+      // Assign a key (step) to each queried element, index start at 0, for better readability, it should start at 1, so index + 1
       if (!step.classList.contains("form-wrapper--hidden")) {
         currentStep = index + 1;
       }
@@ -248,7 +257,7 @@ class MultistepForm {
   getFromLocalStorage(key) {
     try {
       const data = localStorage.getItem(key);
-      return data ? JSON.parse(data) : null;
+      return data ? JSON.parse(data) : [];
     } catch (error) {
       console.error("Error getting from local storage:", error);
     }
