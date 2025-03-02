@@ -71,6 +71,7 @@ input [type=checkbox] {
   gap: 1.5rem;
 }
 .form-step1__heading {
+  display: block;
   width: 100%;
   margin-bottom: 2.4rem;
   font-size: 1.25rem;
@@ -79,6 +80,7 @@ input [type=checkbox] {
 .form-step1__label {
   width: 100%;
   display: flex;
+  margin-top: 0.1rem;
   flex-direction: column;
   gap: 0.5rem;
   font-size: 0.78rem;
@@ -385,7 +387,7 @@ body {
   line-height: 1.25;
   overflow-x: hidden;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
