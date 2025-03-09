@@ -317,8 +317,7 @@ class App {
             if (currentQuiz <= quizzes.length) {
               renderQuiz(currentQuiz);
             } else {
-              console.log("Correct answers: ", correctAnswers);
-              this.showResult(correctAnswers);
+              this.showResult(correctAnswers, subjectId);
             }
           },
           { once: true }
@@ -344,16 +343,63 @@ class App {
     });
   }
 
-  showResult(correctAnswers) {
+  async showResult(correctAnswers, subjectId) {
+    // Add subjectId parameter
     const quizPage = document.querySelector("#quiz-page");
     const resultPage = document.querySelector("#result-page");
+
+    if (!quizPage || !resultPage) {
+      return;
+    }
+
+    // Hide quiz page and show result page
     quizPage.style.display = "none";
     resultPage.style.display = "block";
-    resultPage.innerHTML = /*html*/ `
-      <h1>Result</h1>
-      <p>You got ${correctAnswers} correct answers</p>
-      <a href="index.html"></a>
-    `;
+
+    // Get current subject icon from the header
+    const headerIcon = document.querySelector(".row-top__logo .subject-icon");
+    const headerSubject = document.querySelector(".row-top__subject-name");
+
+    if (headerIcon && headerSubject) {
+      // Update result page subject icon and name
+      const resultIconContainer = resultPage.querySelector(
+        ".result-page__icon-container"
+      );
+      const resultSubjectName = resultPage.querySelector(
+        ".result-page__subject-name"
+      );
+
+      resultIconContainer.innerHTML = `<img class="subject-icon" src="${headerIcon.src}" alt="subject icon">`;
+      resultSubjectName.textContent = headerSubject.textContent;
+    }
+
+    // Update score
+    const finalScore = resultPage.querySelector(".result-page__final-score");
+    const totalQuestions = resultPage.querySelector(".result-page__total");
+    const quizzes = await this.getQuizzes(subjectId); // Now subjectId is available
+
+    if (finalScore && totalQuestions && quizzes) {
+      finalScore.textContent = correctAnswers;
+      totalQuestions.textContent = quizzes.length;
+    }
+
+    // Add event listener to restart button
+    const restartButton = resultPage.querySelector(".result-page__restart-btn");
+    if (restartButton) {
+      restartButton.addEventListener("click", () => {
+        // Reset pages
+        resultPage.style.display = "none";
+        const homePage = document.querySelector("#home-page");
+        if (homePage) {
+          homePage.style.display = "block";
+        }
+        // Reset logo
+        const logo = document.querySelector(".row-top__logo");
+        if (logo) {
+          logo.classList.add("row-top__logo--hidden");
+        }
+      });
+    }
   }
 
   async getQuizzes(subjectId) {

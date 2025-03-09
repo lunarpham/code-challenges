@@ -120,7 +120,6 @@ article {
 }
 
 .quiz-page {
-  display: none;
   width: 100%;
   padding: 1rem 1.5rem;
   @include utils.respond-to(variables.$breakpoint-low) {
@@ -321,26 +320,24 @@ article {
 }
 
 .result-page {
-  display: none;
   flex-direction: column;
+  width: 100%;
+  padding: 1rem 1.5rem;
 
-  &__wrapper {
+  &--hidden {
     display: none;
   }
 
-  &__intro {
-    display: flex;
-    flex-direction: column;
+  &__left-content {
+    display: block;
   }
 
   &__title {
-    color: variables.$text-color;
     font-weight: 300;
     font-size: clamp(2.5rem, 1.972rem + 2.25vw, 4rem);
-  }
-
-  &__subtitle {
-    font-weight: 500;
+    & span {
+      font-weight: 500;
+    }
   }
 
   &__score-container {
@@ -363,6 +360,12 @@ article {
     gap: 1rem;
   }
 
+  &__subject-name {
+    color: variables.$text-color;
+    font-size: clamp(1.125rem, 0.905rem + 0.939vw, 1.75rem);
+    font-weight: 500;
+  }
+
   &__final-score {
     font-weight: 500;
     font-size: clamp(5.5rem, 4.268rem + 5.258vw, 9rem);
@@ -370,32 +373,12 @@ article {
     font-style: normal;
   }
 
-  &__out-of {
-    color: variables.$text-color-p;
-    font-style: normal;
-    margin: 0;
-  }
-
   &__restart-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: variables.$purple;
+    background-color: var(--purple);
     color: white;
-
-    &:hover {
-      background: linear-gradient(
-          0deg,
-          rgba(255, 255, 255, 0.5) 0%,
-          rgba(255, 255, 255, 0.5) 100%
-        ),
-        variables.$purple;
-    }
-  }
-
-  @include utils.respond-to(variables.$breakpoint-high) {
-    flex-direction: row;
-    gap: 10rem;
   }
 }
 
