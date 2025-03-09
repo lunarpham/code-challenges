@@ -1,0 +1,42 @@
+@use "components";
+@use "reset";
+@use "variables";
+@use "utils";
+
+@font-face {
+  font-family: Rubik;
+  src: variables.$font-base-url;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Rubik, sans-serif;
+  background-image: variables.$bg;
+  background-color: variables.$bg-col;
+  color: variables.$text-color;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow-x: hidden;
+  height: 100vh;
+  line-height: 1.25;
+  justify-content: center;
+  align-items: center;
+
+  @include utils.respond-to(variables.$breakpoint-high) {
+    align-items: center;
+  }
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: start
+}

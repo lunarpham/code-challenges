@@ -1,0 +1,23 @@
+@mixin respond-to($breakpoint) {
+  @media screen and (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin flex-column($align, $justify, $gap) {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: $align;
+  justify-content: $justify;
+  gap: $gap;
+}
+
+@mixin flex-row($align, $justify, $gap) {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: $align;
+  justify-content: $justify;
+  gap: $gap;
+}

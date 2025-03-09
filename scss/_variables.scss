@@ -1,0 +1,50 @@
+:root {
+  --html-bg: #fff1e9;
+  --css-bg: #e0fdef;
+  --js-bg: #ebf0ff;
+  --accessibility-bg: #f6e7ff;
+  --text-color: #313e51;
+  --text-color-p: #626c7f;
+  --purple: #a729f5;
+  --bg-col: white;
+  --button-bg: white;
+  --option-bg: #f4f6fa;
+  --option-color: #626c7f;
+  --correct-color: #26d782;
+  --invalid-color: #ee5454;
+  --bg: url("./assets/images/background-pattern-light.svg");
+  --sun-src: url("./assets/icons/icon-sun-dark.svg");
+  --moon-src: url("./assets/icons/icon-moon-dark.svg");
+}
+
+/* Dark mode variables */
+body.dark-mode {
+  --text-color: #fff;
+  --text-color-p: #abc1e1;
+  --bg-col: #313e51;
+  --button-bg: #3b4d66;
+  --bg: url("./assets/images/background-pattern-dark.svg");
+  --sun-src: url("./assets/images/icon-sun-light.svg");
+  --moon-src: url("./assets/images/icon-moon-light.svg");
+}
+
+$html-bg: var(--html-bg);
+$css-bg: var(--css-bg);
+$js-bg: var(--js-bg);
+$accessibility-bg: var(--accessibility-bg);
+$text-color: var(--text-color);
+$text-color-p: var(--text-color-p);
+$purple: var(--purple);
+$bg-col: var(--bg-col);
+$button-bg: var(--button-bg);
+$option-bg: var(--option-bg);
+$option-color: var(--option-color);
+$correct-color: var(--correct-color);
+$invalid-color: var(--invalid-color);
+$bg: var(--bg);
+$sun-src: var(--sun-src);
+$moon-src: var(--moon-src);
+$font-base: "Rubik", sans-serif;
+$font-base-url: url("./assets/fonts/Rubik.ttf");
+$breakpoint-low: 768px;
+$breakpoint-high: 1440px;

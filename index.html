@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frontend Quiz app</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="scripts/init.js"></script>
+  </head>
+  <body>
+    <main>
+      <article class="row-top">
+        <div class="row-top__logo row-top__logo--hidden">
+          <div class="row-top__icon-container">
+            <img class="subject-icon" alt="subject icon" />
+          </div>
+          <h2 class="row-top__subject-name"></h2>
+        </div>
+        <div class="row-top__theme-switch theme-switch">
+          <div class="theme-switch__sun-box"></div>
+          <label class="theme-switch__toggle" for="theme-switch">
+            <input
+              type="checkbox"
+              id="theme-switch"
+              class="theme-switch__input"
+              aria-label="Toggle theme switch"
+            />
+            <div class="theme-switch__slider"></div>
+          </label>
+          <div class="theme-switch__moon-box"></div>
+        </div>
+      </article>
+
+      <!-- Home page / Quiz menu -->
+      <article id="home-page" class="home-page">
+        <div class="home-page__intro">
+          <h1 class="home-page__title">
+            Welcome to the<br />
+            <span class="home-page__title home-page__title--bold"
+              >Frontend Quiz!</span
+            >
+          </h1>
+          <p class="home-page__guideline">Pick a subject to get started.</p>
+        </div>
+        <ul id="subject-list" class="home-page__subject-list"></ul>
+      </article>
+
+      <!-- Quiz page / Question screen -->
+      <article id="quiz-page" class="quiz-page quiz-page--hidden">
+        <form class="quiz-form quiz-form--active" id="quiz-form">
+          <div class="quiz-form__left-content">
+            <div class="quiz-form__question-wrapper">
+              <p class="quiz-form__current-question" id="question-counter">
+                Question 1 of 10
+              </p>
+              <h2 class="quiz-form__question-problem" id="question-text">
+                Question goes here
+              </h2>
+            </div>
+            <div class="quiz-form__progress-bar--full">
+              <div
+                class="quiz-form__progress-bar--fill"
+                id="progress-bar"
+              ></div>
+            </div>
+          </div>
+          <ul class="quiz-form__options" id="quiz-options">
+            <!-- Options will be dynamically generated -->
+          </ul>
+          <div
+            class="quiz-form__select-prompt quiz-form__select-prompt--hidden"
+          >
+            <img src="./assets/images/icon-error.svg" alt="error icon" />
+            <p class="select-prompt-text">Please select an answer</p>
+          </div>
+        </form>
+      </article>
+
+      <!-- Result page / Quiz completed -->
+      <article id="result-page" class="result-page result-page--hidden">
+        <div class="result-page__intro">
+          <h1 class="result-page__title">
+            Quiz completed
+            <span class="result-page__subtitle">You scored...</span>
+          </h1>
+        </div>
+        <div class="result-page__summary">
+          <div class="result-page__score-container">
+            <div class="result-page__subject">
+              <div class="row-top__icon-container">
+                <img class="subject-icon" alt="subject icon" />
+              </div>
+              <h2 class="row-top__subject-name"></h2>
+            </div>
+            <h1 class="result-page__final-score">0</h1>
+            <p class="result-page__out-of">
+              out of <span class="result-page__total">10</span>
+            </p>
+          </div>
+          <button class="result-page__restart-btn">Play Again</button>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>
