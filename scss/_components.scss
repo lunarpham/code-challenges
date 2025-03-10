@@ -1,24 +1,38 @@
 @use "utils";
 @use "variables";
 
-article {
+.article-container {
+  @include utils.flex-column(center, start, 0);
+  padding: 1rem 1.5rem;
+  margin: 0 auto;
+  width: 100%;
+
   @include utils.respond-to(variables.$breakpoint-low) {
-    max-width: 63.3rem;
+    padding: 2.5rem 4rem;
+    width: fit-content;
   }
+
   @include utils.respond-to(variables.$breakpoint-high) {
-    max-width: 82rem;
+    @include utils.flex-row(stretch, center, 10rem);
+  }
+
+  &__content-wrapper {
+    width: 100%;
+    @include utils.respond-to(variables.$breakpoint-high) {
+      max-width: 35rem;
+    }
+  }
+
+  &--hidden {
+    display: none;
   }
 }
 
 .row-top {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include utils.flex-row(center, space-between, 0);
   margin-bottom: 1rem;
   padding: 1rem 1.5rem;
-  margin: 0 auto;
-  max-width: 37rem;
 
   @include utils.respond-to(variables.$breakpoint-low) {
     margin-bottom: 0;
@@ -26,10 +40,8 @@ article {
   }
 
   &__logo {
-    display: flex;
-    align-items: center;
+    @include utils.flex-row(center, start, 1rem);
     min-height: 2.8rem;
-    gap: 1rem;
 
     &--hidden {
       visibility: hidden;
@@ -53,25 +65,9 @@ article {
 }
 
 .home-page {
-  display: block;
-  width: 100%;
-  max-width: 37rem;
-  margin: 0 auto;
-
-  padding: 1rem 1.5rem;
-  @include utils.respond-to(variables.$breakpoint-low) {
-    padding: 2.5rem 4rem;
-  }
-
-  &--hidden {
-    display: none;
-  }
-
   &__intro {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    gap: 3rem;
+    @include utils.flex-column(start, start, 3rem);
+    letter-spacing: 0.5px;
   }
 
   &__title {
@@ -102,9 +98,8 @@ article {
   }
 
   &__subject-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+    width: 100%;
+    @include utils.flex-column(stretch, start, 0.75rem);
 
     @include utils.respond-to(variables.$breakpoint-high) {
       width: 35rem;
@@ -112,57 +107,12 @@ article {
       gap: 1.5rem;
     }
   }
-
-  @include utils.respond-to(variables.$breakpoint-high) {
-    display: flex;
-    justify-content: space-between;
-  }
-}
-
-.quiz-page {
-  width: 100%;
-  padding: 1rem 1.5rem;
-  @include utils.respond-to(variables.$breakpoint-low) {
-    padding: 2.5rem 4rem;
-  }
-  @include utils.respond-to(variables.$breakpoint-high) {
-    @include utils.flex-row(center, space-between, 10rem);
-    max-width: 82rem;
-    height: fit-content;
-  }
-
-  &--hidden {
-    display: none;
-  }
 }
 
 .quiz-form {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  @include utils.respond-to(variables.$breakpoint-high) {
-    display: flex;
-    flex-direction: row;
-    gap: 10rem;
-    justify-content: space-between;
+  &__left-side {
+    @include utils.flex-column(stretch, space-between, 0);
   }
-
-  &__left-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    @include utils.respond-to(variables.$breakpoint-high) {
-      max-width: 35rem;
-    }
-  }
-
-  &__question-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    max-width: 35rem;
-  }
-
   &__current-question {
     color: variables.$text-color-p;
     font-style: italic;
@@ -203,21 +153,16 @@ article {
 
   &__options {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+    @include utils.flex-column(stretch, start, 0.75rem);
 
     @include utils.respond-to(variables.$breakpoint-high) {
-      width: 100%;
+      min-width: 35rem;
       gap: 1.5rem;
-      max-width: 35rem;
     }
   }
 
   &__submit-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include utils.flex-row(center, center, 0);
     background-color: variables.$purple;
     color: white;
     font-size: 1.125rem;
@@ -296,15 +241,6 @@ article {
     }
   }
 
-  &__result {
-    @include utils.flex-row(center, end, 0);
-  }
-
-  @include utils.respond-to(variables.$breakpoint-high) {
-    flex-direction: row;
-    gap: 10rem;
-  }
-
   &__select-prompt {
     display: flex;
     align-items: center;
@@ -317,47 +253,52 @@ article {
       display: none;
     }
   }
+
+  &__result {
+    width: 100%;
+    @include utils.flex-row(center, end, 0);
+  }
 }
 
 .result-page {
-  flex-direction: column;
-  width: 100%;
-  padding: 1rem 1.5rem;
-
-  &--hidden {
-    display: none;
+  &__left-side {
+    @include utils.respond-to(variables.$breakpoint-low) {
+      max-width: 29rem;
+    }
   }
 
-  &__left-content {
-    display: block;
+  &__right-side {
+    @include utils.respond-to(variables.$breakpoint-low) {
+      width: 33rem;
+    }
   }
-
   &__title {
+    @include utils.flex-column(start, start, 0);
     font-weight: 300;
     font-size: clamp(2.5rem, 1.972rem + 2.25vw, 4rem);
     & span {
       font-weight: 500;
+    }
+
+    @include utils.respond-to(variables.$breakpoint-high) {
+      font-weight: 400;
+      max-width: 29rem;
     }
   }
 
   &__score-container {
     background: variables.$bg-col;
     color: variables.$text-color;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
+    @include utils.flex-column(center, center, 1rem);
     margin-bottom: 2rem;
     margin-top: 2.5rem;
     border-radius: 1.5rem;
     padding: 2rem;
+    width: 100%;
   }
 
   &__subject {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    @include utils.flex-row(center, center, 1rem);
   }
 
   &__subject-name {
@@ -374,11 +315,13 @@ article {
   }
 
   &__restart-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--purple);
+    @include utils.flex-row(center, center, 0);
+    background-color: variables.$purple;
     color: white;
+
+    @include utils.respond-to(variables.$breakpoint-low) {
+      font-size: 1.75rem;
+    }
   }
 }
 
@@ -439,9 +382,7 @@ button {
 }
 
 .theme-switch {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  @include utils.flex-row(center, end, 0.5rem);
 
   &__sun-box,
   &__moon-box {

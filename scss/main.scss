@@ -23,9 +23,11 @@ body {
   background-repeat: no-repeat;
   overflow-x: hidden;
   height: 100vh;
-  line-height: 1.25;
+  line-height: 1.17;
+  display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 
   @include utils.respond-to(variables.$breakpoint-high) {
     align-items: center;
@@ -38,5 +40,12 @@ main {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  justify-content: start
+  justify-content: start;
+
+  @include utils.respond-to(variables.$breakpoint-low) {
+    width: fit-content;
+  }
+  @include utils.respond-to(variables.$breakpoint-high) {
+    justify-content: center;
+  }
 }
