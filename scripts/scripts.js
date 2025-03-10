@@ -1,5 +1,4 @@
 window.addEventListener("DOMContentLoaded", () => {
-  console.log("DOM fully loaded and parsed");
   const app = new App();
   app.fetchSubjects();
   const utilities = new Utilities();
@@ -46,7 +45,6 @@ class ApiActions {
       }
       return await response.json();
     } catch (error) {
-      console.log("Error: ", error);
       return [];
     }
   }
@@ -127,7 +125,6 @@ class Utilities {
 
 class App {
   constructor() {
-    console.log("App initialized");
     this.apiActions = new ApiActions();
     const Constants = Elements.constants;
   }
@@ -156,7 +153,6 @@ class App {
       textContent.textContent = subject.category;
 
       subjectButton.addEventListener("click", () => {
-        console.log("Subject clicked: ", subject.category);
         this.fetchQuizzes(subject.id);
         this.showLogoBasedOnSubject(subject.id);
       });
@@ -230,7 +226,8 @@ class App {
                     type="radio"
                     id="choice-${subjectId}-${quiz.id}-${index}"
                     name="question-${quiz.id}"
-                    value="${index}">
+                    value="${index}"
+                    aria-label="quiz option">
                   <span class="quiz-form__result"></span>
                 </label>
               </li>
@@ -412,4 +409,16 @@ function escapeHtml(unsafe) {
 
 function indexToLetter(index) {
   return String.fromCharCode(65 + index);
+}
+
+function manageFocus(element) {
+  // Set focus to the first interactive element in the new view
+  setTimeout(() => {
+    const focusableElement = element.querySelector(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusableElement) {
+      focusableElement.focus();
+    }
+  }, 100);
 }
