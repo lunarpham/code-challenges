@@ -19,12 +19,7 @@ class Elements {
       resultPage: document.querySelector("#result-page"),
       rowTopLogo: document.querySelector(".row-top__logo"),
       rowTopSubjectName: document.querySelector(".row-top__subject-name"),
-      resultPageIconContainer: document.querySelector(
-        ".result-page__icon-container"
-      ),
-      resultPageSubjectName: document.querySelector(
-        ".result-page__subject-name"
-      ),
+      resultPageSubject: document.querySelector(".result-page__subject"),
       resultPageFinalScore: document.querySelector(".result-page__final-score"),
       resultPageTotal: document.querySelector(".result-page__total"),
       resultPageRestartBtn: document.querySelector(".result-page__restart-btn"),
@@ -134,6 +129,7 @@ class App {
   constructor() {
     console.log("App initialized");
     this.apiActions = new ApiActions();
+    const Constants = Elements.constants;
   }
 
   async fetchSubjects() {
@@ -189,8 +185,8 @@ class App {
     if (!homePage || !quizPage) {
       return;
     }
-    homePage.style.display = "none";
-    quizPage.style.display = "block";
+    homePage.classList.add("article-container--hidden");
+    quizPage.classList.remove("article-container--hidden");
     quizPage.innerHTML = "";
 
     let currentQuiz = 1;
@@ -202,26 +198,26 @@ class App {
       const quiz = quizzes[quizIndex - 1];
 
       quizPage.innerHTML = /*HTML*/ `
-        <form class="quiz-form quiz-form--active" id="quiz-${subjectId}-${
+        <form class="quiz-form quiz-form--active article-container" id="quiz-${subjectId}-${
         quiz.id
       }">
-        <div class="quiz-form__left-content">
-          <div class="quiz-form__question-wrapper">
-            <p class="quiz-form__current-question">Question ${currentQuiz} of ${
+          <div class="quiz-form__left-side article-container__content-wrapper">
+            <div class="quiz-form__question-wrapper">
+              <p class="quiz-form__current-question">Question ${currentQuiz} of ${
         quizzes.length
       }</p>
-            <h2 class="quiz-form__question-problem">${escapeHtml(
-              quiz.question
-            )}</h2>
+              <h2 class="quiz-form__question-problem">${escapeHtml(
+                quiz.question
+              )}</h2>
+            </div>
+            <div class="quiz-form__progress-bar--full">
+              <div class="quiz-form__progress-bar--fill" style="width: ${
+                (currentQuiz / quizzes.length) * 100
+              }%"></div>
+            </div>
           </div>
-          <div class="quiz-form__progress-bar--full">
-            <div class="quiz-form__progress-bar--fill" style="width: ${
-              (currentQuiz / quizzes.length) * 100
-            }%"></div>
-          </div>
-        </div>  
-          <ul class="quiz-form__options">
-            ${quiz.options
+          <div class=" article-container__content-wrapper">
+            <ul class="quiz-form__options">${quiz.options
               .map(
                 (choice, index) => /*html*/ `
               <li class="quiz-form__option-wrapper">
@@ -236,7 +232,6 @@ class App {
                     name="question-${quiz.id}"
                     value="${index}">
                   <span class="quiz-form__result"></span>
-              
                 </label>
               </li>
               `
@@ -244,10 +239,11 @@ class App {
               .join("")}
               <button class="quiz-form__submit-button">Submit</button>
               <div class="quiz-form__select-prompt quiz-form__select-prompt--hidden">
-              <img src="./assets/icons/icon-error.svg" alt="error icon" />
-              <p class="select-prompt-text">Please select an answer</p>
-            </div>
-          </ul>
+                <img src="./assets/icons/icon-error.svg" alt="error icon" />
+                <p class="select-prompt-text">Please select an answer</p>
+              </div>
+            </ul>
+          </div> 
         </form>
       `;
 
@@ -356,23 +352,25 @@ class App {
     }
 
     // Hide quiz page and show result page
-    quizPage.style.display = "none";
-    resultPage.style.display = "block";
+    quizPage.classList.add("article-container--hidden");
+    resultPage.classList.remove("article-container--hidden");
 
     // Get current subject icon from the header
-    const headerIcon =
+    const headerIconElement =
       Elements.constants.rowTopLogo.querySelector(".subject-icon");
-    const headerSubject = Elements.constants.rowTopSubjectName;
+    const headerSubjectElement = Elements.constants.rowTopLogo.querySelector(
+      ".row-top__subject-name"
+    );
 
-    if (headerIcon && headerSubject) {
+    if (headerIconElement && headerSubjectElement) {
+      // Extract the src attribute from the headerIconElement
+      const headerIconSrc = headerIconElement.getAttribute("src");
+      const headerSubjectText = headerSubjectElement.textContent;
+
       // Update result page subject icon and name
-      const resultIconContainer = Elements.constants.resultPageIconContainer;
-      const resultSubjectName = Elements.constants.resultPageSubjectName;
-
-      resultIconContainer.innerHTML = `<img class="subject-icon" src="${headerIcon.src}" alt="subject icon">`;
-      resultSubjectName.textContent = headerSubject.textContent;
+      const resultPageSubject = Elements.constants.resultPageSubject;
+      resultPageSubject.innerHTML = /*html*/ `<img class="subject-icon" src="${headerIconSrc}" /><span class="row-top__subject-name">${headerSubjectText}</span>`;
     }
-
     // Update score
     const finalScore = Elements.constants.resultPageFinalScore;
     const totalQuestions = Elements.constants.resultPageTotal;
@@ -388,10 +386,10 @@ class App {
     if (restartButton) {
       restartButton.addEventListener("click", () => {
         // Reset pages
-        resultPage.style.display = "none";
+        resultPage.classList.add("article-container--hidden");
         const homePage = Elements.constants.homePage;
         if (homePage) {
-          homePage.style.display = "block";
+          homePage.classList.remove("article-container--hidden");
         }
         // Reset logo
         const logo = Elements.constants.rowTopLogo;
