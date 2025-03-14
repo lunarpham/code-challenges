@@ -130,7 +130,7 @@ p {
   padding: 0.2rem 0.4rem;
   outline: none;
 }
-.header__theme-switch:focus {
+.header__theme-switch:focus-visible {
   outline: 2px solid var(--theme-switch-btn);
 }
 .header__theme-switch:hover {
@@ -169,9 +169,6 @@ body.dark-mode .header__theme-switch > span {
   padding: 0.3rem 0.25rem;
 }
 .search-bar__icon {
-  position: relative;
-  height: 20px;
-  width: 20px;
   position: relative;
   height: 20px;
   width: 20px;
@@ -369,18 +366,6 @@ body.dark-mode .header__theme-switch > span {
   .social-info {
     margin-top: 3rem;
   }
-}
-.social-info #location {
-  grid-area: item1;
-}
-.social-info #website {
-  grid-area: item2;
-}
-.social-info #twitter {
-  grid-area: item3;
-}
-.social-info #workplace {
-  grid-area: item4;
 }
 @media screen and (min-width: 45rem) {
   .social-info {
