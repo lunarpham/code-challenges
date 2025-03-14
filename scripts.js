@@ -100,7 +100,7 @@ class App {
       },
       website: {
         label: user.blog ? user.blog : "Not Available",
-        url: user.blog ? user.blog : "#",
+        url: user.blog ? `https://${this.removeProtocolLink(user.blog)}` : "#",
       },
       twitter: {
         label: user.twitter_username ? user.twitter_username : "Not Available",
@@ -167,6 +167,10 @@ class App {
   // Replace @ in workplace when passed as a URL
   convertStringForURL(inputString) {
     return inputString.replace("@", "");
+  }
+
+  removeProtocolLink(inputString) {
+    return inputString.replace(/^https?:\/\//, "");
   }
 
   //Convert ISO 8601 Datetime format to American short datetime format (DD MMM YYYY, eg: 13 Mar 2025)
