@@ -66,7 +66,7 @@ class App {
 
       return response;
     } catch (error) {
-      console.error(error);
+      throw new Error(error);
     }
   }
 
