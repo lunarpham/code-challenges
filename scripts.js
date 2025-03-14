@@ -10,6 +10,9 @@ class App {
   constructor() {
     this.config = DefaultConfig;
     this.elements = Elements;
+    this.debounceTimeout = null;
+    this.lastRequestTime = 0;
+    this.requestLimitInterval = 1000;
   }
 
   runOnDOMLoad() {
@@ -30,9 +33,7 @@ class App {
   }
 
   async fetchByInputUsername() {
-    this.elements.searchForm.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      const username = this.elements.searchInput.value.trim();
+    const debouncedFetch = this.debounce(async (username) => {
       const user = await this.sendRequest(username);
       if (!user.ok) {
         this.elements.searchError.classList.remove("search-bar__error--hidden");
@@ -40,6 +41,11 @@ class App {
       }
       this.displayOnUI(user.json());
       this.elements.searchError.classList.add("search-bar__error--hidden");
+    }, 3000);
+    this.elements.searchForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const username = this.elements.searchInput.value.trim();
+      debouncedFetch(username);
     });
   }
 
@@ -157,6 +163,28 @@ class App {
     } else {
       this.elements.themeSwitch.querySelector("p").innerText = "Dark";
     }
+  }
+
+  debounce(func, delay) {
+    return (...args) => {
+      const now = Date.now();
+      const timeElapsed = now - this.lastRequestTime;
+      clearTimeout(this.debounceTimeout);
+
+      if (timeElapsed >= this.requestLimitInterval) {
+        this.lastRequestTime = now;
+        func.apply(this, args);
+      } else {
+        const waitTime = Math.max(
+          delay,
+          this.requestLimitInterval - timeElapsed
+        );
+        this.debounceTimeout = setTimeout(() => {
+          this.lastRequestTime = Date.now();
+          func.apply(this, args);
+        }, waitTime);
+      }
+    };
   }
 
   // Remove spaces and commas from string for search
