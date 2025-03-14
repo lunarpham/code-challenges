@@ -1,0 +1,269 @@
+@use "variables" as *;
+@use "utils" as *;
+@use "typography" as *;
+
+// Styling for general components
+
+.section-container {
+  background-color: $app-color;
+  border-radius: 15px;
+  box-shadow: 0px 16px 30px -10px rgba(70, 96, 187, 0.198567);
+  &__part-block {
+    display: block;
+    &--shift {
+      @include respond-to($breakpoint-large) {
+        margin-left: 10.5rem;
+      }
+    }
+  }
+}
+
+// Styling for header component
+.header {
+  @include flex-row(center, space-between, 1rem);
+  width: 100%;
+
+  @include respond-to($breakpoint-small) {
+    margin-top: 8.75rem;
+  }
+
+  @include respond-to($breakpoint-large) {
+    margin-top: 9rem;
+  }
+
+  &__logo {
+    @include typography($fs-600, $text-highlight-color, 700);
+  }
+
+  &__theme-switch {
+    @include flex-row(center, center, 0.5rem);
+    background-color: $theme-switch-btn-bg;
+    @include typography($fs-400, $theme-switch-btn, 700);
+    text-transform: uppercase;
+    align-self: flex-start;
+    letter-spacing: 2.5px;
+    border-radius: 5px;
+    &:focus {
+      outline: 2px solid $theme-switch-btn;
+      outline-offset: 10px;
+    }
+
+    & > span {
+      display: block;
+      width: 20px;
+      height: 20px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      background-image: url("../assets/images/icon-moon.svg");
+      body.dark-mode & {
+        background-image: url("../assets/images/icon-sun.svg");
+      }
+    }
+  }
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2.25rem;
+  gap: 1rem;
+}
+
+// Styling for main content
+// Search container
+.search-bar {
+  @include flex-row(center, start, 1rem);
+  height: 3rem;
+  padding: 0.3rem 0.25rem;
+
+  &__icon {
+    position: relative;
+    height: 20px;
+    width: 20px;
+    position: relative;
+    height: 20px;
+    width: 20px;
+    left: 0.8rem;
+  }
+
+  &__input {
+    flex-grow: 2;
+    border-radius: 15px;
+    line-height: 1.5625rem;
+    height: 100%;
+    @include typography($fs-200, $text-secondary-color, 400);
+    &::placeholder {
+      @include typography($fs-200, $text-secondary-color, 400);
+    }
+  }
+
+  &__error {
+    color: red;
+    font-size: 11px;
+    text-align: right;
+
+    &--hidden {
+      visibility: hidden;
+    }
+  }
+
+  &__submit {
+    position: relative;
+    background-color: $btn-color;
+    height: 2.4rem;
+    width: 5.25rem;
+    border-radius: 10px;
+    @include typography($fs-400, white, 700);
+  }
+}
+
+.basic-info {
+  @include flex-row(stretch, start, 1rem);
+  padding: 2rem 1.5rem 0 1.5rem;
+
+  &__avatar > img {
+    border-radius: 99999px;
+    width: 70px;
+    height: 70px;
+    @include respond-to($breakpoint-small) {
+      width: 117px;
+      height: 117px;
+    }
+  }
+
+  &__summary {
+    width: 100%;
+    flex-wrap: wrap;
+    @include flex-column(start, start, 0);
+
+    @include respond-to($breakpoint-small) {
+      margin-top: 1rem;
+      margin-left: 2.5rem;
+      @include flex-row(stretch, space-between, 0);
+    }
+
+    &--primary {
+      line-height: 2.06rem;
+      @include typography($fs-500, $text-highlight-color, 700);
+      @include respond-to($breakpoint-small) {
+        @include typography($fs-600, $text-highlight-color, 700);
+      }
+    }
+    &--highlight {
+      @include typography($fs-400, $username-color, 400);
+      text-decoration: underline;
+    }
+    &--secondary {
+      @include typography($fs-400, $text-grayblue-color, 400);
+    }
+  }
+
+  &__left-content {
+    order: 1;
+    @include flex-column(start, start, 0.35rem);
+    @include respond-to($breakpoint-large) {
+      height: 100%;
+    }
+  }
+
+  &__right-content {
+    order: 2;
+    align-self: flex-start;
+  }
+}
+
+.bio {
+  margin-top: 2.07rem;
+  margin-bottom: 1.45rem;
+  padding-inline: 1.5rem;
+  @include respond-to($breakpoint-large) {
+    margin-top: 0;
+  }
+}
+
+.active-stats {
+  padding: 1.1rem 0;
+  margin-right: 1.5rem;
+  margin-left: 1.5rem;
+  background-color: $stat-bg-color;
+  border-radius: 15px;
+  @include respond-to($breakpoint-large) {
+    margin-left: 12rem;
+  }
+  @include grid-template(3, 1rem, space-around, center);
+  &__column {
+    @include flex-column(center, center, 0.4rem);
+    flex-direction: column-reverse;
+    &--small {
+      @include typography($fs-200, $text-secondary-color, 400);
+      line-height: 1.5625rem;
+    }
+
+    &--bold {
+      @include typography($fs-500, $text-highlight-color, 700);
+      line-height: 2.06rem;
+    }
+  }
+}
+
+.social-info {
+  padding-inline: 1.5rem;
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+  gap: 1.5rem;
+
+  #location {
+    grid-area: item1;
+  }
+  #website {
+    grid-area: item2;
+  }
+  #twitter {
+    grid-area: item3;
+  }
+  #workplace {
+    grid-area: item4;
+  }
+  display: grid;
+  grid-template-areas:
+    "item1"
+    "item2"
+    "item3"
+    "item4";
+  @include respond-to($breakpoint-medium) {
+    grid-template-areas:
+      "item1 item3"
+      "item2 item4";
+  }
+
+  &__item {
+    &:hover > a {
+      text-decoration: underline;
+    }
+    & figure {
+      width: 20px;
+      @include flex-row(center, center, 0);
+    }
+    & > span {
+      @include typography($fs-400, $text-secondary-color, 400);
+    }
+    & > a {
+      @include flex-row(center, start, 0.5rem);
+      @include typography($fs-400, $hyperlink-color, 400);
+    }
+
+    &--not-found {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  &__icon {
+    height: 100%;
+    body.dark-mode & {
+      filter: invert(0.3) sepia(2) saturate(10) hue-rotate(180deg)
+        brightness(900%);
+    }
+  }
+}

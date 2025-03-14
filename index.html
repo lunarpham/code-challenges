@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frontend Mentor | Github user search app</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="scripts.js" type="module" defer></script>
+  </head>
+  <body class="">
+    <header class="header">
+      <div class="header__logo">devfinder</div>
+      <div class="header__right-content">
+        <button
+          class="header__theme-switch header__theme-switch--light"
+          id="theme-switch"
+          type="checkbox"
+        >
+          <p></p>
+          <span></span>
+        </button>
+      </div>
+    </header>
+    <main class="app">
+      <section class="section-container">
+        <form id="search-form">
+          <label class="search-bar">
+            <img
+              class="search-bar__icon"
+              class=""
+              src="./assets/images/icon-search.svg"
+              alt="search icon"
+            />
+            <input
+              id="search-input"
+              class="search-bar__input"
+              type="text"
+              placeholder="Search GitHub username..."
+            />
+            <span
+              class="search-bar__error search-bar__error--hidden"
+              id="no-results"
+              >No results</span
+            >
+            <button type="submit" class="search-bar__submit" id="search-submit">
+              Search
+            </button>
+          </label>
+        </form>
+      </section>
+      <section class="section-container section-container__part-block">
+        <div class="basic-info">
+          <div class="basic-info__avatar">
+            <img
+              src="./assets/images/avatar-default.png"
+              alt="avatar"
+              id="avatar"
+            />
+          </div>
+          <div class="basic-info__summary">
+            <div class="basic-info__left-content">
+              <h2 class="basic-info__summary--primary" id="display-name">
+                Alex Guerrero
+              </h2>
+              <a
+                href="#"
+                target="_blank"
+                class="basic-info__summary--highlight"
+                id="username"
+              >
+                @alexguerrero
+              </a>
+            </div>
+            <div class="basic-info__right-content">
+              <p class="basic-info__summary--secondary" id="join-date">
+                Joined 01 Jun 2011
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bio section-container__part-block section-container__part-block--shift"
+          id="bio"
+        >
+          This profile has no bio
+        </div>
+        <div
+          class="active-stats section-container__part-block section-container__part-block--shift"
+        >
+          <div class="active-stats__column">
+            <div class="active-stats__column--bold" id="repos">26</div>
+            <div class="active-stats__column--small">Repos</div>
+          </div>
+          <div class="active-stats__column">
+            <div class="active-stats__column--bold" id="followers">61</div>
+            <div class="active-stats__column--small">Followers</div>
+          </div>
+          <div class="active-stats__column">
+            <div class="active-stats__column--bold" id="following">48</div>
+            <div class="active-stats__column--small">Following</div>
+          </div>
+        </div>
+        <ul
+          class="social-info section-container__part-block section-container__part-block--shift"
+        >
+          <li class="social-info__item" id="location">
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <figure>
+                <img
+                  src="./assets/images/icon-location.svg"
+                  alt="location icon"
+                  class="social-info__icon"
+                />
+              </figure>
+              <span>Amsterdam, NL</span>
+            </a>
+          </li>
+          <li class="social-info__item" id="website">
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <figure>
+                <img
+                  src="./assets/images/icon-website.svg"
+                  alt="website icon"
+                  class="social-info__icon"
+                />
+              </figure>
+              <span>alexguerrero.com</span>
+            </a>
+          </li>
+          <li class="social-info__item" id="twitter">
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <figure>
+                <img
+                  src="./assets/images/icon-twitter.svg"
+                  alt="twitter icon"
+                  class="social-info__icon"
+                />
+              </figure>
+              <span>@alexguerrero</span>
+            </a>
+          </li>
+          <li class="social-info__item" id="workplace">
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <figure>
+                <img
+                  src="./assets/images/icon-workplace.svg"
+                  alt="workplace icon"
+                  class="social-info__icon"
+                />
+              </figure>
+              <span>@devfinder</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

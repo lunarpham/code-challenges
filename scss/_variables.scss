@@ -1,0 +1,42 @@
+:root {
+  --bg-color: #f5f7ff;
+  --btn-color: #0077ff;
+  --app-color: #ffffff;
+  --stat-bg-color: #f5f7ff;
+  --text-highlight-color: #2a3341;
+  --text-secondary-color: #697c9b;
+  --hyperlink-color: #4b699b;
+  --theme-switch-btn: #4b699b;
+  --theme-switch-btn-bg: transparent;
+  --text-default-color: #697c9b;
+  --username-color: #0077ff;
+  --text-grayblue-color: #697c9b;
+}
+
+body.dark-mode {
+  --bg-color: #141d2e;
+  --default-text-color: #ffffff;
+  --app-color: #1e2b48;
+  --stat-bg-color: #141d2e;
+  --text-highlight-color: #ffffff;
+  --text-default-color: #ffffff;
+  --hyperlink-color: #ffffff;
+  --theme-switch-btn: #ffffff;
+  --text-secondary-color: #ffffff;
+}
+
+$bg-color: var(--bg-color);
+$btn-color: var(--btn-color);
+$app-color: var(--app-color);
+$stat-bg-color: var(--stat-bg-color);
+$text-highlight-color: var(--text-highlight-color);
+$text-secondary-color: var(--text-secondary-color);
+$hyperlink-color: var(--hyperlink-color);
+$theme-switch-btn: var(--theme-switch-btn);
+$theme-switch-btn-bg: var(--theme-switch-btn-bg);
+$text-default-color: var(--text-default-color);
+$username-color: var(--username-color);
+$text-grayblue-color: var(--text-grayblue-color);
+$breakpoint-large: 54rem;
+$breakpoint-medium: 45rem;
+$breakpoint-small: 35rem;

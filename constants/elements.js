@@ -1,0 +1,20 @@
+export class Elements {
+  static app = document.querySelector("body");
+  static themeSwitch = document.getElementById("theme-switch");
+  static searchForm = document.getElementById("search-form");
+  static searchInput = document.getElementById("search-input");
+  static searchButton = document.getElementById("search-submit");
+  static searchError = document.getElementById("no-results");
+  static avatar = document.getElementById("avatar");
+  static displayName = document.getElementById("display-name");
+  static username = document.getElementById("username");
+  static joinDate = document.getElementById("join-date");
+  static bio = document.getElementById("bio");
+  static repos = document.getElementById("repos");
+  static followers = document.getElementById("followers");
+  static following = document.getElementById("following");
+  static location = document.getElementById("location");
+  static twitter = document.getElementById("twitter");
+  static website = document.getElementById("website");
+  static workplace = document.getElementById("workplace");
+}

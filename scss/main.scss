@@ -1,0 +1,28 @@
+@use "variables" as *;
+@use "utils" as *;
+@use "typography" as *;
+@use "components" as *;
+@use "reset" as *;
+
+body {
+  @include flex-column(stretch, start, 0);
+  width: 100%;
+  background-color: $bg-color;
+  color: $text-default-color;
+  font-family: "Space Mono", monospace;
+  font-size: $fs-400;
+  line-height: 1.5;
+  padding-inline: 2rem;
+  padding-bottom: 2.5rem;
+  margin-inline: auto;
+  max-width: 56rem;
+  min-height: 100vh;
+
+  @include respond-to($breakpoint-small) {
+    padding-inline: 4rem;
+  }
+  @include respond-to($breakpoint-medium) {
+    padding-inline: 2rem;
+    padding-bottom: 4rem;
+  }
+}
