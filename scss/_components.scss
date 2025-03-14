@@ -219,9 +219,13 @@
 
 .social-info {
   padding-inline: 1.5rem;
-  margin-top: 3rem;
   margin-bottom: 4rem;
+  margin-top: 1.5rem;
   gap: 1.5rem;
+
+  @include respond-to($breakpoint-large) {
+    margin-top: 3rem;
+  }
 
   #location {
     grid-area: item1;

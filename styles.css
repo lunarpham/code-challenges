@@ -342,11 +342,16 @@ body.dark-mode .header__theme-switch > span {
 
 .social-info {
   padding-inline: 1.5rem;
-  margin-top: 3rem;
   margin-bottom: 4rem;
+  margin-top: 1.5rem;
   gap: 1.5rem;
   display: grid;
   grid-template-areas: "item1" "item2" "item3" "item4";
+}
+@media screen and (min-width: 54rem) {
+  .social-info {
+    margin-top: 3rem;
+  }
 }
 .social-info #location {
   grid-area: item1;
