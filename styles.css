@@ -230,6 +230,7 @@ body.dark-mode .header__theme-switch > span {
   }
 }
 .basic-info__summary {
+  position: relative;
   width: 100%;
   flex-wrap: wrap;
   display: flex;
@@ -250,6 +251,8 @@ body.dark-mode .header__theme-switch > span {
   }
 }
 .basic-info__summary--primary {
+  position: relative;
+  bottom: 0.3rem;
   line-height: 2.06rem;
   font-size: var(--fs-500);
   font-weight: 700;
@@ -267,11 +270,25 @@ body.dark-mode .header__theme-switch > span {
   font-weight: 400;
   color: var(--username-color);
   text-decoration: underline;
+  position: relative;
+  bottom: 1.2rem;
+}
+@media screen and (min-width: 35rem) {
+  .basic-info__summary--highlight {
+    bottom: 0.3rem;
+  }
 }
 .basic-info__summary--secondary {
   font-size: var(--fs-400);
   font-weight: 400;
   color: var(--text-grayblue-color);
+  position: relative;
+  bottom: 0.6rem;
+}
+@media screen and (min-width: 35rem) {
+  .basic-info__summary--secondary {
+    bottom: 0.3rem;
+  }
 }
 .basic-info__left-content {
   order: 1;
