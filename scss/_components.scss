@@ -143,6 +143,7 @@
   }
 
   &__summary {
+    position: relative;
     width: 100%;
     flex-wrap: wrap;
     @include flex-column(start, start, 0);
@@ -154,6 +155,8 @@
     }
 
     &--primary {
+      position: relative;
+      bottom: 0.3rem;
       line-height: 2.06rem;
       @include typography($fs-500, $text-highlight-color, 700);
       @include respond-to($breakpoint-small) {
@@ -163,9 +166,19 @@
     &--highlight {
       @include typography($fs-400, $username-color, 400);
       text-decoration: underline;
+      position: relative;
+      bottom: 1.2rem;
+      @include respond-to($breakpoint-small) {
+        bottom: 0.3rem;
+      }
     }
     &--secondary {
       @include typography($fs-400, $text-grayblue-color, 400);
+      position: relative;
+      bottom: 0.6rem;
+      @include respond-to($breakpoint-small) {
+        bottom: 0.3rem;
+      }
     }
   }
 
