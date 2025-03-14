@@ -17,9 +17,11 @@ body {
   margin-inline: auto;
   max-width: 56rem;
   min-height: 100vh;
+  margin-top: 2rem;
 
   @include respond-to($breakpoint-small) {
     padding-inline: 4rem;
+    margin-top: 0;
   }
   @include respond-to($breakpoint-medium) {
     padding-inline: 2rem;

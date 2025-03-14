@@ -42,10 +42,20 @@
     text-transform: uppercase;
     align-self: flex-start;
     letter-spacing: 2.5px;
-    border-radius: 5px;
+    border-radius: 3px;
+    padding: 0.2rem 0.4rem;
+    outline: none;
     &:focus {
       outline: 2px solid $theme-switch-btn;
-      outline-offset: 10px;
+    }
+
+    &:hover {
+      filter: invert(0.6) sepia(2) saturate(100) hue-rotate(180deg)
+        brightness(60%);
+      body.dark-mode & {
+        filter: invert(0.6) sepia(2) saturate(50) hue-rotate(180deg)
+          brightness(90%);
+      }
     }
 
     & > span {
@@ -104,7 +114,7 @@
     text-align: right;
 
     &--hidden {
-      visibility: hidden;
+      display: none;
     }
   }
 
