@@ -1,0 +1,61 @@
+$font-base: "Comic Neue";
+$font-base-url: (
+  light: "../assets/fonts/ComicNeue-Light.ttf",
+  light-italic: "../assets/fonts/ComicNeue-LightItalic.ttf",
+  regular: "../assets/fonts/ComicNeue-Regular.ttf",
+  italic: "../assets/fonts/ComicNeue-Italic.ttf",
+  bold: "../assets/fonts/ComicNeue-Bold.ttf",
+  bold-italic: "../assets/fonts/ComicNeue-BoldItalic.ttf",
+);
+
+@font-face {
+  font-family: "Comic Neue";
+  src: url(map-get($font-base-url, regular)) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Comic Neue";
+  src: url(map-get($font-base-url, italic)) format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Comic Neue";
+  src: url(map-get($font-base-url, light)) format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Comic Neue";
+  src: url(map-get($font-base-url, light-italic)) format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Comic Neue";
+  src: url(map-get($font-base-url, bold)) format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Comic Neue";
+  src: url(map-get($font-base-url, bold-italic)) format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-weight: 400;
+}
