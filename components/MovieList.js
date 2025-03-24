@@ -1,6 +1,7 @@
 import { Elements } from "../scripts/elements.js";
 import { getStartYearOnly } from "../scripts/utils.js";
-import { errorHandler } from "../scripts/errorHandler.js";
+import { errorHandler } from "./Error.js";
+import { renderLoading, removeLoading } from "./Loading.js";
 
 export function renderMovies(movieList, shouldClear = true) {
   const movieListElement = Elements.movieList;
@@ -24,7 +25,7 @@ export function renderMovies(movieList, shouldClear = true) {
       // Remove skeleton loaders
       skeletonLoaders.forEach((loader) => loader.remove());
 
-      if (movieList.Response === "False" && movieList.Error) {
+      if (shouldClear && movieList.Error) {
         movieListElement.innerHTML = errorHandler(movieList.Error);
         return;
       }
@@ -43,6 +44,8 @@ export function renderMovies(movieList, shouldClear = true) {
         // The more efficient way is to use a DocumentFragment (which mean we create a list
         // outside the DOM and we only update the DOM once by appeding the list to the DOM)
       }
+
+      addMovieCardEventListeners();
       resolve(); // Resolve the promise
     }, 500);
   });
@@ -52,9 +55,9 @@ function createMovieCards(movieList) {
   return movieList
     .map(
       (movie) => /*html*/ `
-      <a href="?id=${movie.imdbID}" class="movie">
+      <div class="movie">
         <div class="movie-card">
-          <button class="movie-card__above">
+          <button class="movie-card__above"  id="${movie.imdbID}">
             <img
               src="${movie.Poster}"
               alt="${movie.Title} poster"
@@ -84,10 +87,20 @@ function createMovieCards(movieList) {
             </div>
           </div>
         </div>
-      </a>
+      </div>
   `
     )
     .join("");
+}
+
+function addMovieCardEventListeners() {
+  const movieCards = document.querySelectorAll(".movie-card__above");
+  movieCards.forEach((card) => {
+    card.addEventListener("click", () => {
+      const movieId = card.id;
+      location.href = `?id=${movieId}`;
+    });
+  });
 }
 
 function createSkeletonLoaders(count) {

@@ -1,13 +1,75 @@
 import { Elements } from "../scripts/elements.js";
-import { errorHandler } from "../scripts/errorHandler.js";
+import { errorHandler } from "./Error.js";
 
 export function renderMovieDetails(movie) {
   const app = Elements.app;
-  if (movie.Response === "False" && movie.Error) {
-    app.innerHTML = errorHandler(movie.Error);
-  } else {
-    app.innerHTML = movieDetailsElement(movie);
-  }
+  app.innerHTML = movieDetailsSkeleton();
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      if (movie.Response === "False" && movie.Error) {
+        app.innerHTML = errorHandler(movie.Error);
+      } else {
+        app.innerHTML = movieDetailsElement(movie);
+      }
+      resolve();
+    }, 500);
+  });
+}
+
+function movieDetailsSkeleton() {
+  return /*html*/ `
+  <div class="movie-details movie-details--skeleton">
+    <div class="movie-details__poster">
+    </div>
+    <div class="movie-details__info">
+      <div class="movie-details__first-row">
+        <h1 class="movie-details__title"></h1>
+        <div class="movie-details__rating"></div>
+      </div>
+      <div class="movie-details__second-row">
+      </div>
+      <div class="movie-details__third-row">
+        <div class="movie-details__third-row--long"></div>
+        <div class="movie-details__third-row--short"></div>
+        <div class="movie-details__third-row--medium"></div>
+      </div>
+      <hr class="divider"></hr>
+      <div class="movie-details__fourth-row">
+        <div class="movie-details__info-row">
+          <span class="movie-details__info-head"></span>
+          <span id="genre" class="movie-details__info-text"></span>
+        </div>
+        <div class="movie-details__info-row">
+          <span class="movie-details__info-head"></span>
+          <span id="genre" class="movie-details__info-text"></span>
+        </div>
+        <div class="movie-details__info-row">
+          <span class="movie-details__info-head"></span>
+          <span id="genre" class="movie-details__info-text"></span>
+        </div>
+        <div class="movie-details__info-row">
+          <span class="movie-details__info-head"></span>
+          <span id="genre" class="movie-details__info-text"></span>
+        </div>
+        <div class="movie-details__info-row">
+          <span class="movie-details__info-head"></span>
+          <span id="genre" class="movie-details__info-text"></span>
+        </div>
+        <div class="movie-details__info-row">
+          <span class="movie-details__info-head"></span>
+          <span id="genre" class="movie-details__info-text"></span>
+        </div>
+        <div class="movie-details__info-row">
+          <span class="movie-details__info-head"></span>
+          <span id="genre" class="movie-details__info-text"></span>
+        </div>
+        <div class="movie-details__info-row">
+          <span class="movie-details__info-head"></span>
+          <span id="genre" class="movie-details__info-text"></span>
+        </div>
+      </div>
+    </div>
+  </div>`;
 }
 
 function movieDetailsElement(movie) {
