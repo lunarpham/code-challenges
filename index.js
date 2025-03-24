@@ -1,6 +1,6 @@
 import { DefaultConfig as config } from "./scripts/config.js";
 import { Elements as elements } from "./scripts/elements.js";
-import { initRippleEffect } from "./scripts/utils.js";
+import { initRippleEffect, convertString } from "./scripts/utils.js";
 import { getMovieDetails, searchMovies } from "./scripts/fetch.js";
 import { renderHeader } from "./components/Header.js";
 import { renderSearchForm } from "./components/SearchForm.js";
@@ -10,7 +10,7 @@ import { errorHandler } from "./components/Error.js";
 import { renderLoading, removeLoading } from "./components/Loading.js";
 import { simulateLoadingDelay } from "./scripts/utils.js";
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   initRippleEffect();
   const app = App();
   app.loadOnStart();
@@ -29,10 +29,10 @@ export default function App() {
   let currentSearch = defaultSearch; // Default search term
   let hasMoreResults = true; // Check if there are more results
 
-  loadOnStart();
   function loadOnStart() {
     initApp();
     setupInfinteScroll();
+    setPopStateListener();
   }
 
   function setupInfinteScroll() {
@@ -41,11 +41,17 @@ export default function App() {
         window.innerHeight + window.scrollY >=
           document.body.offsetHeight - 500 &&
         !loading && // Check if we're already loading
-        hasMoreResults && // Check if there are more results
-        !window.location.search // Check if we're not on homepage (index route)
+        hasMoreResults &&
+        window.location.pathname === "/" // Check if there are more results
       ) {
         loadMoreMovies();
       }
+    });
+  }
+
+  function setPopStateListener() {
+    window.addEventListener("popstate", async () => {
+      initApp();
     });
   }
 
@@ -54,6 +60,7 @@ export default function App() {
     const loadingElement = renderLoading();
     const urlParams = new URLSearchParams(window.location.search);
     const movieId = urlParams.get("id");
+    const search = urlParams.get("s");
 
     try {
       if (movieId) {
@@ -63,10 +70,13 @@ export default function App() {
           renderMovieDetails,
           movieDetails
         );
-      } else {
+      }
+      if (window.location.pathname === "/") {
         renderSearchForm(searchMoviesByTerm);
         currentPage = 1;
         loading = true;
+        currentSearch = search || defaultSearch;
+        elements.searchInput.value = search || "";
         const movieList = await searchMovies(
           staticValue,
           currentSearch,
@@ -84,7 +94,7 @@ export default function App() {
   async function searchMoviesByTerm(event) {
     event.preventDefault();
     const searchInput = elements.searchInput;
-    const searchTerm = searchInput.value.trim();
+    const searchTerm = searchInput.value.trim() || defaultSearch;
     if (!searchTerm) return;
     if (searchTerm === currentSearch) return;
     currentSearch = searchTerm;
@@ -99,7 +109,8 @@ export default function App() {
         searchTerm,
         currentPage
       );
-
+      window.history.pushState({}, "", `/?s=${convertString(searchTerm)}`);
+      renderHeader(); //update header to show back button
       await renderMovies(movieList);
     } catch (error) {
       errorHandler(error);

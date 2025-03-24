@@ -37,35 +37,35 @@ function movieDetailsSkeleton() {
       <div class="movie-details__fourth-row">
         <div class="movie-details__info-row">
           <span class="movie-details__info-head"></span>
-          <span id="genre" class="movie-details__info-text"></span>
+          <span class="movie-details__info-text"></span>
         </div>
         <div class="movie-details__info-row">
           <span class="movie-details__info-head"></span>
-          <span id="genre" class="movie-details__info-text"></span>
+          <span class="movie-details__info-text"></span>
         </div>
         <div class="movie-details__info-row">
           <span class="movie-details__info-head"></span>
-          <span id="genre" class="movie-details__info-text"></span>
+          <span class="movie-details__info-text"></span>
         </div>
         <div class="movie-details__info-row">
           <span class="movie-details__info-head"></span>
-          <span id="genre" class="movie-details__info-text"></span>
+          <span class="movie-details__info-text"></span>
         </div>
         <div class="movie-details__info-row">
           <span class="movie-details__info-head"></span>
-          <span id="genre" class="movie-details__info-text"></span>
+          <span class="movie-details__info-text"></span>
         </div>
         <div class="movie-details__info-row">
           <span class="movie-details__info-head"></span>
-          <span id="genre" class="movie-details__info-text"></span>
+          <span class="movie-details__info-text"></span>
         </div>
         <div class="movie-details__info-row">
           <span class="movie-details__info-head"></span>
-          <span id="genre" class="movie-details__info-text"></span>
+          <span class="movie-details__info-text"></span>
         </div>
         <div class="movie-details__info-row">
           <span class="movie-details__info-head"></span>
-          <span id="genre" class="movie-details__info-text"></span>
+          <span class="movie-details__info-text"></span>
         </div>
       </div>
     </div>
@@ -130,7 +130,7 @@ function movieDetailsElement(movie) {
         </div>
         <div class="movie-details__info-row">
           <span class="movie-details__info-head">Actors :</span>
-          <span di="actors" class="movie-details__info-text">${
+          <span id="actors" class="movie-details__info-text">${
             movie.Actors || "N/A"
           }</span>
         </div>

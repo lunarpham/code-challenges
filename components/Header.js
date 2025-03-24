@@ -2,8 +2,8 @@ import { Elements as elements } from "../scripts/elements.js";
 
 function headerElement() {
   return /*html*/ `
-  <div class="header__backward" id="back-button">
-        <a class="btn btn--rounded" href="/">
+  <div class="header__backward header__backward--hidden" id="back-button">
+        <a class="btn btn--rounded" href="#">
           <img src="./assets/images/icon-left.svg" alt="left" class="btn__icon"/>
           <span class="btn__ripple"></span>
         </a>
@@ -144,9 +144,17 @@ function headerElement() {
 export function renderHeader() {
   const header = elements.header;
   header.innerHTML = headerElement();
-  if (!window.location.search) {
-    elements.backButton.classList.add("header__backward--hidden");
+  const backButton = elements.backButton;
+  const backTo = backButton.querySelector("a");
+
+  if (window.location.search) {
+    backButton.classList.remove("header__backward--hidden");
+
+    backTo.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.history.back();
+    });
   } else {
-    elements.backButton.classList.remove("header__backward--hidden");
+    backButton.classList.add("header__backward--hidden");
   }
 }
