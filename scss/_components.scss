@@ -10,6 +10,7 @@
   transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   position: relative;
   overflow: hidden;
+  aspect-ratio: 1/1;
   &:hover {
     background-color: rgba(255, 255, 255, 0.08);
   }
@@ -108,8 +109,13 @@
 .search-form {
   flex-grow: 0;
   width: 100%;
-  max-width: 85%;
-  padding: 0 2rem;
+  max-width: 100%;
+  padding: 0 2.5rem;
+  margin-top: 1rem;
+
+  @include respond-to($breakpoint-sm) {
+    max-width: 85%;
+  }
 
   @include respond-to($breakpoint-lg) {
     flex-grow: 0;
@@ -139,12 +145,16 @@
 .movie-list {
   flex-grow: 0;
   width: 100%;
-  max-width: 85%;
+  max-width: 100%;
   @include flex-row(stretch, start, 0);
   padding: 2rem;
   flex-wrap: wrap;
   width: calc(100% + 1rem);
   margin: -8px;
+
+  @include respond-to($breakpoint-sm) {
+    max-width: 85%;
+  }
 }
 
 .movie {
@@ -170,107 +180,49 @@
   &--skeleton {
     height: 100%;
 
-    .movie-card__above {
-      background-color: $bg-color-loading;
-    }
-
-    .movie-card__image {
-      background: linear-gradient(0deg, #000, transparent);
-      animation: skeleton-pulse 1.5s infinite ease-in-out;
-
-      &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          rgba(255, 255, 255, 0) 0%,
-          rgba(255, 255, 255, 0.15) 50%,
-          rgba(255, 255, 255, 0) 100%
-        );
-        animation: shimmer 1.8s infinite;
+    .movie-card {
+      &__above {
+        background-color: $bg-color-loading;
       }
-    }
-    .movie-card__title {
-      padding: 1rem;
-      overflow: hidden;
-      background: linear-gradient(0deg, #000, transparent);
-      position: absolute;
-      span {
-        display: block;
-        background-color: $bg-color-secondary;
-        height: 1.5rem;
-        width: 70%;
-        border-radius: 4px;
-        position: relative;
-        overflow: hidden;
+
+      &__image {
         &::after {
-          content: "";
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.15) 50%,
-            rgba(255, 255, 255, 0) 100%
-          );
-          animation: shimmer 1.8s infinite;
+          @include loading-animation;
+        }
+      }
+      &__title {
+        padding: 1rem;
+        background: linear-gradient(0deg, #000, transparent);
+        position: absolute;
+        span {
+          display: block;
+          height: 1.5rem;
+          width: 70%;
+          @include loading-wrapper($bg-color-loading-light);
+          &::after {
+            @include loading-animation;
+          }
+        }
+      }
+      &__release-year {
+        width: 6rem;
+        height: 1.5rem;
+        @include loading-wrapper($bg-color-loading);
+        &::after {
+          @include loading-animation;
+        }
+      }
+      &__favorite {
+        width: 2.7rem;
+        height: 2.7rem;
+        @include loading-wrapper($bg-color-loading);
+        border-radius: 50%;
+        &::after {
+          @include loading-animation;
         }
       }
     }
-    .movie-card__release-year {
-      width: 6rem;
-      height: 1.5rem;
-      background-color: $bg-color-loading;
-      border-radius: 4px;
-      position: relative;
-      overflow: hidden;
-
-      &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          rgba(255, 255, 255, 0) 0%,
-          rgba(255, 255, 255, 0.15) 50%,
-          rgba(255, 255, 255, 0) 100%
-        );
-        animation: shimmer 1.8s infinite;
-      }
-    }
-    .movie-card__favorite {
-      width: 2.7rem;
-      height: 2.7rem;
-      background-color: $bg-color-loading;
-      border-radius: 50%;
-      overflow: hidden;
-      position: relative;
-      &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          rgba(255, 255, 255, 0) 0%,
-          rgba(255, 255, 255, 0.15) 50%,
-          rgba(255, 255, 255, 0) 100%
-        );
-        animation: shimmer 1.8s infinite;
-      }
-    }
   }
-
   &__above {
     width: 100%;
     position: relative;
@@ -352,12 +304,86 @@
 
 .movie-details {
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  align-items: stretch;
-  height: 100vh;
-  max-width: 84%;
-  margin-top: 1rem;
+
+  @include respond-to($breakpoint-sm) {
+    display: grid;
+    align-items: stretch;
+    margin-top: 2rem;
+    max-width: 83%;
+    grid-template-columns: 1fr 2fr;
+  }
+
+  &--skeleton {
+    .movie-details {
+      &__poster {
+        @include loading-wrapper;
+        &::after {
+          @include loading-animation;
+        }
+      }
+
+      &__title {
+        height: 3rem;
+        width: 31rem;
+        @include loading-wrapper;
+        &::after {
+          @include loading-animation;
+        }
+      }
+      &__rating {
+        height: 3rem;
+        width: 10rem;
+        @include loading-wrapper;
+        &::after {
+          @include loading-animation;
+        }
+      }
+      &__second-row {
+        height: 1.5rem;
+        width: 100%;
+        @include loading-wrapper;
+        &::after {
+          @include loading-animation;
+        }
+      }
+      &__third-row {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        & div {
+          @include loading-wrapper;
+          height: 1.5rem;
+          &::after {
+            @include loading-animation;
+          }
+        }
+        &--short {
+          width: 65%;
+        }
+
+        &--medium {
+          width: 80%;
+        }
+        &--long {
+          width: 90%;
+        }
+      }
+      &__fourth-row {
+        @include flex-column(start, start, 2rem);
+      }
+
+      &__info-head,
+      &__info-text {
+        height: 1.5rem;
+        width: 90%;
+        @include loading-wrapper;
+        &::after {
+          @include loading-animation;
+        }
+      }
+    }
+  }
 
   &__poster {
     width: 100%;
@@ -370,8 +396,15 @@
   }
 
   &__info {
-    padding: 0 2rem;
+    margin-top: 0.3rem;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
     @include flex-column(start, start, 1rem);
+    @include respond-to($breakpoint-sm) {
+      padding: 0 2rem;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
   }
 
   &__first-row {
@@ -472,4 +505,26 @@
   width: 100%;
   text-align: center;
   padding: 2rem;
+}
+
+.loading-screen {
+  @include flex-column(center, center, 0);
+  width: 100%;
+  height: 60vh;
+  &__spinner {
+    border: 3px solid $bg-color-loading-light;
+    border-radius: 50%;
+    border-top: 3px solid #3498db;
+    width: 3rem;
+    aspect-ratio: 1/1;
+    animation: spin 1.2s linear infinite;
+  }
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 }

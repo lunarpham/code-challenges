@@ -5,7 +5,7 @@
 @use "reset" as *;
 
 body {
-  @include flex-column(center, start, 1rem);
+  @include flex-column(center, start, 0);
   width: 100%;
   background-color: $bg-color-secondary;
   color: $text-color-primary;
@@ -13,6 +13,6 @@ body {
 }
 
 main {
-  @include flex-column(center, start, 1rem);
+  @include flex-column(center, start, 0);
   width: 100%;
 }
