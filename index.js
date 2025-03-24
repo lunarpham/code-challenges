@@ -6,7 +6,9 @@ import { renderHeader } from "./components/Header.js";
 import { renderSearchForm } from "./components/SearchForm.js";
 import { renderMovies } from "./components/MovieList.js";
 import { renderMovieDetails } from "./components/MovieDetails.js";
-import { errorHandler } from "./scripts/errorHandler.js";
+import { errorHandler } from "./components/Error.js";
+import { renderLoading, removeLoading } from "./components/Loading.js";
+import { simulateLoadingDelay } from "./scripts/utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initRippleEffect();
@@ -49,22 +51,33 @@ export default function App() {
 
   async function initApp() {
     renderHeader();
+    const loadingElement = renderLoading();
     const urlParams = new URLSearchParams(window.location.search);
     const movieId = urlParams.get("id");
-    if (movieId) {
-      const movieDetails = await getMovieDetails(staticValue, movieId);
-      renderMovieDetails(movieDetails);
-    } else {
-      renderSearchForm(searchMoviesByTerm);
-      currentPage = 1;
-      loading = true;
-      const movieList = await searchMovies(
-        staticValue,
-        currentSearch,
-        currentPage
-      );
-      await renderMovies(movieList);
-      loading = false;
+
+    try {
+      if (movieId) {
+        const movieDetails = await getMovieDetails(staticValue, movieId);
+        return simulateLoadingDelay(
+          loadingElement,
+          renderMovieDetails,
+          movieDetails
+        );
+      } else {
+        renderSearchForm(searchMoviesByTerm);
+        currentPage = 1;
+        loading = true;
+        const movieList = await searchMovies(
+          staticValue,
+          currentSearch,
+          currentPage
+        );
+        loading = false;
+        return simulateLoadingDelay(loadingElement, renderMovies, movieList);
+      }
+    } catch (error) {
+      removeLoading(loadingElement);
+      errorHandler(error);
     }
   }
 
