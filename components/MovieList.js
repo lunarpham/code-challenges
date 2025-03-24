@@ -1,7 +1,6 @@
 import { Elements } from "../scripts/elements.js";
 import { getStartYearOnly } from "../scripts/utils.js";
 import { errorHandler } from "./Error.js";
-import { renderLoading, removeLoading } from "./Loading.js";
 
 export function renderMovies(movieList, shouldClear = true) {
   const movieListElement = Elements.movieList;
