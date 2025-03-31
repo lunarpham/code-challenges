@@ -9,8 +9,6 @@ export default function PricingCard({ plan, selectedPlan, onSelectPlan }) {
     return formattedPrice + "đ";
   };
 
-  console.log(selectedPlan);
-
   return (
     <div
       className={
