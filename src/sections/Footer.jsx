@@ -36,8 +36,11 @@ export default function Footer(props) {
     },
   ];
   return (
-    <div id="footer" className="border-t border-white/15 py-6 md:py-10">
-      <div className="flex flex-col px-8 gap-6 md:flex-row md:justify-between">
+    <div
+      id="footer"
+      className="border-t border-black/15 dark:border-white/15 py-6 md:py-10"
+    >
+      <div className="px-8 xl:container xl:mx-auto xl:px-24 lg:w-11/12 flex flex-col gap-6 md:flex-row md:justify-between">
         <div className="flex flex-col gap-2">
           <div className="flex items-center space-x-2">
             <div className="h-8 w-8 bg-[#eaeaea] rounded-md"></div>
