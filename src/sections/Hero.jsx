@@ -19,7 +19,7 @@ export default function Hero() {
               <button className="px-8 py-2 h-11 rounded-md bg-black text-white hover:bg-black/90 dark:bg-white dark:text-black dark:hover:bg-white/90 inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disable:pointer-events-none">
                 Bắt đầu ngay
               </button>
-              <button className="px-8 py-2 h-11 rounded-md bg-transparent text-black border border-black/10 dark:border-gray-200/20 hover:bg-black/90 dark:text-white dark:hover:bg-white/90 inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disable:pointer-events-none">
+              <button className="px-8 py-2 h-11 rounded-md bg-transparent text-black border border-black/10 dark:border-gray-200/20 hover:bg-black/10 dark:text-white dark:hover:bg-white/10 inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disable:pointer-events-none">
                 Tìm hiểu thêm
               </button>
             </div>
