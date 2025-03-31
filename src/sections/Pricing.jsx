@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import PricingCard from "../components/PricingCard";
 
 export default function Pricing() {
-  const [selectedPlan, setSelectedPlan] = useState(2);
-  const onSelectPlan = (planId) => {
-    setSelectedPlan(planId);
-  };
   const plans = [
     {
       id: 1,
@@ -51,6 +47,13 @@ export default function Pricing() {
       ],
     },
   ];
+
+  const [selectedPlan, setSelectedPlan] = useState(
+    plans.find((plan) => plan.bestValue)?.id || plans[0].id
+  );
+  const onSelectPlan = (planId) => {
+    setSelectedPlan(planId);
+  };
   return (
     <div className="py-12 md:py-24 lg:py-32">
       <div className="px-4 md:px-6 flex flex-col justify-center items-center">

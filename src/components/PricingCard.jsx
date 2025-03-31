@@ -3,10 +3,10 @@ import { IoCheckmark } from "react-icons/io5";
 
 export default function PricingCard({ plan, selectedPlan, onSelectPlan }) {
   const convertPrice = (price) => {
-    return new Intl.NumberFormat("vi-VN", {
-      style: "currency",
-      currency: "VND",
-    }).format(price);
+    const formattedPrice = price
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return formattedPrice + "đ";
   };
 
   console.log(selectedPlan);
