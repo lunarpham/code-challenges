@@ -12,12 +12,15 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
 
   return (
     <>
-      <div className="px-8 py-3 bg-white/60 dark:bg-black/60 border-b border-gray-500/20 dark:border-white/20 sticky top-0 z-50 w-full backdrop-blur">
+      <div
+        id="navbar"
+        className="px-8 py-3 bg-white/60 dark:bg-black/60 border-b border-gray-500/20 dark:border-white/20 sticky top-0 z-50 w-full backdrop-blur"
+      >
         <div className="mx-auto flex justify-between items-center">
-          <div className="flex items-center space-x-2">
+          <a href="#" className="flex items-center space-x-2">
             <div className="h-8 w-8 bg-[#eaeaea] rounded-md"></div>
             <h1 className="font-bold text-xl">Brand</h1>
-          </div>
+          </a>
           <div className="flex items-center gap-2 md:gap-6 text-sm font-medium">
             <nav className="gap-6 hidden md:flex">
               <a href="#features">Features</a>

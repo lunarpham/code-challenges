@@ -55,7 +55,7 @@ export default function Pricing() {
     setSelectedPlan(planId);
   };
   return (
-    <div className="py-12 md:py-24 lg:py-32">
+    <div id="pricing" className="py-12 md:py-24 lg:py-32">
       <div className="px-4 md:px-6 flex flex-col justify-center items-center">
         <div className="w-full flex flex-col justify-center items-center text-center space-y-2  ">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
