@@ -1,31 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { X, Trash2 } from "lucide-react";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteTodo, toggleDeleteModal } from "../store/todoSlice";
+import { useList, useModal } from "../hooks";
 
 export default function DeleteModal() {
-  const [isVisible, setIsVisible] = useState(false);
-  const dispatch = useDispatch();
-  const { selectedTodo } = useSelector((state) => state.todo);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(!isVisible), 50);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const closeModal = () => {
-    setIsVisible(!isVisible);
-    setTimeout(() => dispatch(toggleDeleteModal()), 100);
-  };
+  const { selectedTodo, handleDeleteTodo } = useList();
+  const { isOpen, isVisible, closeModal } = useModal(true);
 
   const handleDelete = () => {
-    if (selectedTodo) {
-      dispatch(deleteTodo(selectedTodo.id));
-      closeModal();
-    }
+    handleDeleteTodo();
+    closeModal();
   };
 
-  if (!selectedTodo) return null; // Ensure selectedTodo is not null
+  if (!isOpen || !selectedTodo) return null; // Ensure selectedTodo is not null
 
   return (
     <div

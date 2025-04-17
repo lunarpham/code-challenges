@@ -7,38 +7,12 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import { Plus, RotateCcw, ChevronDown, MoveDown, MoveUp } from "lucide-react";
-import { useDispatch, useSelector } from "react-redux";
 import { categories, filters } from "../lib/utils";
-import { setFilter } from "../store/todoSlice";
+import { useFilters } from "../hooks";
 
 export default function Header({ handleNewTodo }) {
-  const dispatch = useDispatch();
-  const { filter } = useSelector((state) => state.todo);
-  const handleFilterChange = (filterType, value) => {
-    const newFilter = { ...filter };
-    if (filterType === "status") {
-      newFilter.isDone =
-        value === "All" ? null : value === "Done" ? true : false;
-    } else if (filterType === "type") {
-      newFilter.type = value === "All" ? null : value;
-    }
-
-    dispatch(setFilter(newFilter));
-  };
-
-  const handleSortChange = () => {
-    const newFilter = { ...filter };
-    newFilter.sortByDate = newFilter.sortByDate === "asc" ? "desc" : "asc";
-    dispatch(setFilter(newFilter));
-  };
-
-  const handleResetFilter = () => {
-    const newFilter = { ...filter };
-    newFilter.type = null;
-    newFilter.isDone = null;
-    newFilter.sortByDate = "desc";
-    dispatch(setFilter(newFilter));
-  };
+  const { filter, handleFilterChange, handleSortChange, handleResetFilter } =
+    useFilters();
 
   return (
     <div className="flex items-center justify-between w-full container mx-auto p-8">

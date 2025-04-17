@@ -1,49 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Select } from "@headlessui/react";
 import { X } from "lucide-react";
-import { useDispatch, useSelector } from "react-redux";
-import { addNewTodo, toggleModal, updateTodo } from "../store/todoSlice";
 import { categories } from "../lib/utils";
+import { useForm, useModal } from "../hooks";
 
-export default function TodoForm() {
-  const dispatch = useDispatch();
-  const { selectedTodo } = useSelector((state) => state.todo);
-  const [isVisible, setIsVisible] = useState(false);
-  const [todoForm, setTodoForm] = useState(() => {
-    return {
-      title: "",
-      type: "Work",
-      description: "",
-    };
-  });
-
-  console.log(todoForm);
-
-  useEffect(() => {
-    if (selectedTodo) {
-      setTodoForm(selectedTodo);
-    }
-  }, [selectedTodo]);
+export default function TodoForm({ selectedTodo }) {
+  const {
+    todoForm,
+    updateFormField,
+    handleSubmit: handleFormSubmit,
+  } = useForm(selectedTodo);
+  const { isVisible, closeModal } = useModal(false);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (selectedTodo) {
-      dispatch(updateTodo(todoForm));
-    } else {
-      dispatch(addNewTodo(todoForm));
-    }
+    handleFormSubmit(e);
     closeModal();
   };
 
-  const closeModal = () => {
-    setIsVisible(!isVisible);
-    setTimeout(() => dispatch(toggleModal()), 100);
+  const handleSelectChange = (value) => {
+    updateFormField("type", value);
   };
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(!isVisible), 50);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <div
@@ -72,9 +48,7 @@ export default function TodoForm() {
               type="text"
               required
               value={todoForm.title}
-              onChange={(e) =>
-                setTodoForm({ ...todoForm, title: e.target.value })
-              }
+              onChange={(e) => updateFormField("title", e.target.value)}
               placeholder="Add a title for your Todo..."
               className="bg-white/20 rounded-md p-3 text-sm w-full focus:outline-none focus:ring-2 focus:ring-purple-400/50 focus:border-transparent placeholder:text-gray-400 transition duration-100"
             />
@@ -85,9 +59,7 @@ export default function TodoForm() {
               type="text"
               required
               value={todoForm.type}
-              onChange={(e) =>
-                setTodoForm({ ...todoForm, type: e.target.value })
-              }
+              onChange={(e) => handleSelectChange(e.target.value)}
               placeholder="Add a type for your Todo..."
               className="bg-white/20 rounded-md p-3 text-sm w-full focus:outline-none focus:ring-2 focus:ring-purple-400/50 focus:border-transparent placeholder:text-gray-400 transition duration-100"
             >
@@ -104,9 +76,7 @@ export default function TodoForm() {
               type="text"
               required
               value={todoForm.description}
-              onChange={(e) =>
-                setTodoForm({ ...todoForm, description: e.target.value })
-              }
+              onChange={(e) => updateFormField("description", e.target.value)}
               placeholder="Add a title for your Todo..."
               className="bg-white/20 rounded-md resize-none h-48 p-3 text-sm w-full focus:outline-none focus:ring-2 focus:ring-purple-400/50 focus:border-transparent placeholder:text-gray-400 transition duration-100"
             />
