@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { th } from "framer-motion/client";
 import { v4 as uuidv4 } from "uuid";
 
 const loadState = () => {
@@ -33,7 +34,6 @@ const loadState = () => {
       },
     };
   } catch (e) {
-    console.error("Could not load state", e);
     return {
       todos: [],
       loading: false,
@@ -57,7 +57,7 @@ const saveState = (state) => {
     const serializedState = JSON.stringify(state);
     localStorage.setItem("todoState", serializedState);
   } catch (e) {
-    console.error("Could not save state", e);
+    throw new Error("Failed to save state to localStorage");
   }
 };
 
@@ -111,7 +111,7 @@ const todoSlice = createSlice({
       }
     },
 
-    selectedTodo: (state, action) => {
+    setSelectedTodo: (state, action) => {
       state.selectedTodo = action.payload;
     },
 
@@ -136,7 +136,7 @@ export const {
   changeStatus,
   updateTodo,
   deleteTodo,
-  selectedTodo,
+  setSelectedTodo,
   toggleDeleteModal,
   setFilter,
   setExpandItem,
